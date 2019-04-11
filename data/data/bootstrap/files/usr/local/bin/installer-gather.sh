@@ -36,17 +36,18 @@ function queue() {
     done
     # echo "${@}"
     if [[ -n "${FILTER}" ]]; then
-    "${@}" | "${FILTER}" >"${TARGET}" &
+    sudo "${@}" | "${FILTER}" >"${TARGET}" &
     else
-    "${@}" >"${TARGET}" &
+    sudo "${@}" >"${TARGET}" &
     fi
 }
-OC="oc --config=/etc/kubernetes/kubeconfig --insecure-skip-tls-verify --request-timeout=5s"
+OC="sudo oc --config=/etc/kubernetes/kubeconfig --insecure-skip-tls-verify --request-timeout=5s"
 
 mkdir -p "${ARTIFACTS}/control-plane" "${ARTIFACTS}/workers" "${ARTIFACTS}/resources/pods" "${ARTIFACTS}/resources/network" "${ARTIFACTS}/resources/nodes"
 
 echo "Gathering cluster resources ..."
 queue resources/nodes.list ${OC} get nodes -o jsonpath --template '{range .items[*]}{.metadata.name}{"\n"}{end}'
+queue resources/masters.list ${OC} get nodes -o jsonpath -l 'node-role.kubernetes.io/worker=true' --template '{range .items[*]}{.metadata.name}{"\n"}{end}'
 queue resources/containers ${OC} get pods --all-namespaces --template '{{ range .items }}{{ $name := .metadata.name }}{{ $ns := .metadata.namespace }}{{ range .spec.containers }}-n {{ $ns }} {{ $name }} -c {{ .name }}{{ "\n" }}{{ end }}{{ range .spec.initContainers }}-n {{ $ns }} {{ $name }} -c {{ .name }}{{ "\n" }}{{ end }}{{ end }}'
 queue resources/api-pods ${OC} get pods -l openshift.io/component=api --all-namespaces --template '{{ range .items }}-n {{ .metadata.namespace }} {{ .metadata.name }}{{ "\n" }}{{ end }}'
 
@@ -72,36 +73,14 @@ queue resources/services.json ${OC} get services --all-namespaces -o json
 
 FILTER=gzip queue resources/openapi.json.gz ${OC} get --raw /openapi/v2
 
-echo "Gathering node journals ..."
-FILTER=gzip queue control-plane/journal.gz ${OC} adm node-logs --role=master --unify=false
-FILTER=gzip queue workers/journal.gz ${OC} adm node-logs --role=worker --unify=false
-
-echo "Gathering iptables data ..."
-${OC} get --request-timeout=20s -n openshift-sdn -l app=sdn pods --template '{{ range .items }}{{ .metadata.name }}{{ "\n" }}{{ end }}' > "${ARTIFACTS}/resources/sdn-pods"
-while IFS= read -r i; do
-    queue resources/network/iptables-save-$i ${OC} rsh --timeout=20 -n openshift-sdn -c sdn $i iptables-save -c
-done < "${ARTIFACTS}/resources/sdn-pods"
-
-echo "Gathering container logs ..."
-while IFS= read -r i; do
-    file="$( echo "$i" | cut -d ' ' -f 2,3,5 | tr -s ' ' '_' )"
-    FILTER=gzip queue resources/pods/${file}.log.gz ${OC} logs --request-timeout=20s $i
-    FILTER=gzip queue resources/pods/${file}_previous.log.gz ${OC} logs --request-timeout=20s -p $i
-done < "${ARTIFACTS}/resources/containers"
-
-echo "Gathering kube-apiserver audit.log ..."
-${OC} adm node-logs --request-timeout=30s --role=master --path=kube-apiserver/ > "${ARTIFACTS}/resources/kube-audit-logs"
-while IFS=$'\n' read -r line; do
-    IFS=' ' read -ra log <<< "${line}"
-    FILTER=gzip queue resources/nodes/"${log[0]}"-"${log[1]}".gz ${OC} adm node-logs --request-timeout=30s "${log[0]}" --path=kube-apiserver/"${log[1]}"
-done < "${ARTIFACTS}/resources/kube-audit-logs"
-
-echo "Gathering openshift-apiserver audit.log ..."
-oc --insecure-skip-tls-verify adm node-logs --request-timeout=30s --role=master --path=openshift-apiserver/ > "${ARTIFACTS}/resources/openshift-audit-logs"
-while IFS=$'\n' read -r line; do
-    IFS=' ' read -ra log <<< "${line}"
-    FILTER=gzip queue resources/nodes/"${log[0]}"-"${log[1]}".gz ${OC} adm node-logs --request-timeout=30s "${log[0]}" --path=openshift-apiserver/"${log[1]}"
-done < "${ARTIFACTS}/resources/openshift-audit-logs"
-
 echo "Waiting for logs ..."
 wait
+
+echo "Gather remote logs"
+for i in $(cat ${ARTIFACTS}/resources/masters.list); do
+  scp /usr/local/bin/installer-masters-gather.sh core@$i:
+  mkdir -p ${ARTIFACTS}/masters/${i}
+  ssh core@$i -C 'sudo ./installer-masters-gather.sh'
+  ssh core@$i -C 'sudo tar cv -C /tmp/artifacts/ .' | tar -x -C ${ARTIFACTS}/masters/${i}/
+done
+tar cz -C /tmp/artifacts . > ~/log-bundle.tar.gz
