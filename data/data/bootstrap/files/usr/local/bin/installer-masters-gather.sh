@@ -3,14 +3,14 @@
 ARTIFACTS="${1:-/tmp/artifacts}"
 mkdir -p "${ARTIFACTS}"
 
-echo "Gathering bootstrap journals ..."
+echo "Gathering master journals ..."
 mkdir -p "${ARTIFACTS}/journals"
-for service in bootkube openshift kubelet crio
+for service in openshift kubelet crio
 do
-    journalctl --boot --no-pager --output=short --unit="${service}" > "${ARTIFACTS}/bootstrap/journals/${service}.log"
+    journalctl --boot --no-pager --output=short --unit="${service}" > "${ARTIFACTS}/journals/${service}.log"
 done
 
-echo "Gathering bootstrap containers ..."
+echo "Gathering master container logs ..."
 mkdir -p "${ARTIFACTS}/containers"
 for container in $(crictl ps --all --quiet)
 do

@@ -47,7 +47,7 @@ mkdir -p "${ARTIFACTS}/control-plane" "${ARTIFACTS}/workers" "${ARTIFACTS}/resou
 
 echo "Gathering cluster resources ..."
 queue resources/nodes.list ${OC} get nodes -o jsonpath --template '{range .items[*]}{.metadata.name}{"\n"}{end}'
-queue resources/masters.list ${OC} get nodes -o jsonpath -l 'node-role.kubernetes.io/worker=true' --template '{range .items[*]}{.metadata.name}{"\n"}{end}'
+queue resources/masters.list ${OC} get nodes -o jsonpath -l 'node-role.kubernetes.io/master' --template '{range .items[*]}{.metadata.name}{"\n"}{end}'
 queue resources/containers ${OC} get pods --all-namespaces --template '{{ range .items }}{{ $name := .metadata.name }}{{ $ns := .metadata.namespace }}{{ range .spec.containers }}-n {{ $ns }} {{ $name }} -c {{ .name }}{{ "\n" }}{{ end }}{{ range .spec.initContainers }}-n {{ $ns }} {{ $name }} -c {{ .name }}{{ "\n" }}{{ end }}{{ end }}'
 queue resources/api-pods ${OC} get pods -l openshift.io/component=api --all-namespaces --template '{{ range .items }}-n {{ .metadata.namespace }} {{ .metadata.name }}{{ "\n" }}{{ end }}'
 
@@ -78,9 +78,9 @@ wait
 
 echo "Gather remote logs"
 for i in $(cat ${ARTIFACTS}/resources/masters.list); do
-  scp /usr/local/bin/installer-masters-gather.sh core@$i:
+  scp -o StrictHostKeyChecking=false -o UserKnownHostsFile=/dev/null  /usr/local/bin/installer-masters-gather.sh core@$i:
   mkdir -p ${ARTIFACTS}/masters/${i}
-  ssh core@$i -C 'sudo ./installer-masters-gather.sh'
-  ssh core@$i -C 'sudo tar cv -C /tmp/artifacts/ .' | tar -x -C ${ARTIFACTS}/masters/${i}/
+  ssh -o StrictHostKeyChecking=false -o UserKnownHostsFile=/dev/null core@$i -C 'sudo ./installer-masters-gather.sh'
+  ssh -o StrictHostKeyChecking=false -o UserKnownHostsFile=/dev/null core@$i -C 'sudo tar cv -C /tmp/artifacts/ .' | tar -x -C ${ARTIFACTS}/masters/${i}/
 done
 tar cz -C /tmp/artifacts . > ~/log-bundle.tar.gz
