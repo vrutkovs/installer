@@ -12,17 +12,17 @@ done
 
 echo "Gathering bootstrap containers ..."
 mkdir -p "${ARTIFACTS}/bootstrap/containers"
-for container in $(crictl ps --all --quiet)
+for container in $(sudo crictl ps --all --quiet)
 do
-    container_name=$(crictl ps -a --id ${container} -v | grep -oP "Name: \K(.*)")
-    crictl logs "${container}" >& "${ARTIFACTS}/bootstrap/containers/${container_name}.log"
-    crictl inspect "${container}" >& "${ARTIFACTS}/bootstrap/containers/${container_name}.inspect"
+    container_name=$(sudo crictl ps -a --id ${container} -v | grep -oP "Name: \K(.*)")
+    sudo crictl logs "${container}" >& "${ARTIFACTS}/bootstrap/containers/${container_name}.log"
+    sudo crictl inspect "${container}" >& "${ARTIFACTS}/bootstrap/containers/${container_name}.inspect"
 done
-mkdir -p "${ARTIFACTS}/bootstrap/containers"
-for container in $(podman ps --all --quiet)
+mkdir -p "${ARTIFACTS}/bootstrap/pods"
+for container in $(sudo podman ps --all --quiet)
 do
-    podman logs "${container}" >& "${ARTIFACTS}/bootstrap/containers/${container}.log"
-    podman inspect "${container}" >& "${ARTIFACTS}/bootstrap/containers/${container}.inspect"
+    sudo podman logs "${container}" >& "${ARTIFACTS}/bootstrap/pods/${container}.log"
+    sudo podman inspect "${container}" >& "${ARTIFACTS}/bootstrap/pods/${container}.inspect"
 done
 
 # Collect cluster data
@@ -43,7 +43,7 @@ function queue() {
 }
 OC="sudo oc --config=/etc/kubernetes/kubeconfig --insecure-skip-tls-verify --request-timeout=5s"
 
-mkdir -p "${ARTIFACTS}/control-plane" "${ARTIFACTS}/workers" "${ARTIFACTS}/resources/pods" "${ARTIFACTS}/resources/network" "${ARTIFACTS}/resources/nodes"
+mkdir -p "${ARTIFACTS}/control-plane" "${ARTIFACTS}/masters" "${ARTIFACTS}/resources/pods" "${ARTIFACTS}/resources/network" "${ARTIFACTS}/resources/nodes"
 
 echo "Gathering cluster resources ..."
 queue resources/nodes.list ${OC} get nodes -o jsonpath --template '{range .items[*]}{.metadata.name}{"\n"}{end}'
