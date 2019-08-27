@@ -5,6 +5,7 @@ go 1.12
 require (
 	cloud.google.com/go v0.41.0 // indirect
 	github.com/Azure/azure-sdk-for-go v32.5.0+incompatible
+	github.com/Azure/go-autorest v10.15.4+incompatible
 	github.com/Azure/go-autorest/tracing v0.5.0 // indirect
 	github.com/Netflix/go-expect v0.0.0-20190729225929-0e00d9168667 // indirect
 	github.com/apparentlymart/go-cidr v1.0.0
@@ -19,12 +20,12 @@ require (
 	github.com/gophercloud/gophercloud v0.3.1-0.20190807175045-25a84d593c97
 	github.com/gophercloud/utils v0.0.0-20190527093828-25f1b77b8c03
 	github.com/gopherjs/gopherjs v0.0.0-20181103185306-d547d1d9531e // indirect
+	github.com/hashicorp/terraform v0.12.7 // indirect
 	github.com/hinshun/vt10x v0.0.0-20180809195222-d55458df857c // indirect
 	github.com/kballard/go-shellquote v0.0.0-20180428030007-95032a82bc51 // indirect
 	github.com/kr/fs v0.1.0 // indirect
 	github.com/kr/pty v1.1.5 // indirect
 	github.com/libvirt/libvirt-go v5.0.0+incompatible
-	github.com/mattn/go-colorable v0.1.1 // indirect
 	github.com/metal3-io/baremetal-operator v0.0.0-20190822124022-58c455095b51
 	github.com/metal3-io/cluster-api-provider-baremetal v0.0.0-20190823184140-acab6c77caaa
 	github.com/mgutz/ansi v0.0.0-20170206155736-9520e82c474b // indirect
@@ -44,9 +45,6 @@ require (
 	github.com/spf13/cobra v0.0.5
 	github.com/stretchr/testify v1.3.0
 	github.com/vincent-petithory/dataurl v0.0.0-20160330182126-9a301d65acbb
-	go.uber.org/atomic v1.3.2 // indirect
-	go.uber.org/multierr v1.1.0 // indirect
-	go.uber.org/zap v1.9.1 // indirect
 	golang.org/x/crypto v0.0.0-20190701094942-4def268fd1a4
 	golang.org/x/oauth2 v0.0.0-20190604053449-0f29369cfe45
 	golang.org/x/sys v0.0.0-20190801041406-cbf593c0f2f3

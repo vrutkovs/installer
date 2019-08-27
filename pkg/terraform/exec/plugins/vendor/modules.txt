@@ -332,7 +332,7 @@ github.com/google/gofuzz
 github.com/google/uuid
 # github.com/googleapis/gax-go/v2 v2.0.4
 github.com/googleapis/gax-go/v2
-# github.com/gophercloud/gophercloud v0.0.0-20190509032623-7892efa714f1
+# github.com/gophercloud/gophercloud v0.3.1-0.20190807175045-25a84d593c97
 github.com/gophercloud/gophercloud
 github.com/gophercloud/gophercloud/openstack/baremetal/noauth
 github.com/gophercloud/gophercloud/openstack/baremetal/v1/allocations
@@ -343,6 +343,7 @@ github.com/gophercloud/gophercloud/openstack/baremetalintrospection/noauth
 github.com/gophercloud/gophercloud/openstack/baremetalintrospection/v1/introspection
 github.com/gophercloud/gophercloud/pagination
 github.com/gophercloud/gophercloud/openstack
+github.com/gophercloud/gophercloud/openstack/blockstorage/extensions/quotasets
 github.com/gophercloud/gophercloud/openstack/blockstorage/extensions/volumeactions
 github.com/gophercloud/gophercloud/openstack/blockstorage/v1/volumes
 github.com/gophercloud/gophercloud/openstack/blockstorage/v2/snapshots
@@ -371,6 +372,7 @@ github.com/gophercloud/gophercloud/openstack/db/v1/instances
 github.com/gophercloud/gophercloud/openstack/db/v1/users
 github.com/gophercloud/gophercloud/openstack/dns/v2/recordsets
 github.com/gophercloud/gophercloud/openstack/dns/v2/zones
+github.com/gophercloud/gophercloud/openstack/identity/v3/applicationcredentials
 github.com/gophercloud/gophercloud/openstack/identity/v3/endpoints
 github.com/gophercloud/gophercloud/openstack/identity/v3/groups
 github.com/gophercloud/gophercloud/openstack/identity/v3/projects
@@ -380,7 +382,10 @@ github.com/gophercloud/gophercloud/openstack/identity/v3/tokens
 github.com/gophercloud/gophercloud/openstack/identity/v3/users
 github.com/gophercloud/gophercloud/openstack/imageservice/v2/imagedata
 github.com/gophercloud/gophercloud/openstack/imageservice/v2/images
+github.com/gophercloud/gophercloud/openstack/keymanager/v1/containers
+github.com/gophercloud/gophercloud/openstack/keymanager/v1/secrets
 github.com/gophercloud/gophercloud/openstack/networking/v2/extensions/attributestags
+github.com/gophercloud/gophercloud/openstack/networking/v2/extensions/dns
 github.com/gophercloud/gophercloud/openstack/networking/v2/extensions/external
 github.com/gophercloud/gophercloud/openstack/networking/v2/extensions/extradhcpopts
 github.com/gophercloud/gophercloud/openstack/networking/v2/extensions/fwaas/firewalls
@@ -399,7 +404,13 @@ github.com/gophercloud/gophercloud/openstack/networking/v2/extensions/lbaas_v2/l
 github.com/gophercloud/gophercloud/openstack/networking/v2/extensions/lbaas_v2/loadbalancers
 github.com/gophercloud/gophercloud/openstack/networking/v2/extensions/lbaas_v2/monitors
 github.com/gophercloud/gophercloud/openstack/networking/v2/extensions/lbaas_v2/pools
+github.com/gophercloud/gophercloud/openstack/networking/v2/extensions/mtu
+github.com/gophercloud/gophercloud/openstack/networking/v2/extensions/portsbinding
+github.com/gophercloud/gophercloud/openstack/networking/v2/extensions/portsecurity
 github.com/gophercloud/gophercloud/openstack/networking/v2/extensions/provider
+github.com/gophercloud/gophercloud/openstack/networking/v2/extensions/qos/policies
+github.com/gophercloud/gophercloud/openstack/networking/v2/extensions/qos/rules
+github.com/gophercloud/gophercloud/openstack/networking/v2/extensions/rbacpolicies
 github.com/gophercloud/gophercloud/openstack/networking/v2/extensions/security/groups
 github.com/gophercloud/gophercloud/openstack/networking/v2/extensions/security/rules
 github.com/gophercloud/gophercloud/openstack/networking/v2/extensions/subnetpools
@@ -416,6 +427,8 @@ github.com/gophercloud/gophercloud/openstack/networking/v2/subnets
 github.com/gophercloud/gophercloud/openstack/objectstorage/v1/containers
 github.com/gophercloud/gophercloud/openstack/objectstorage/v1/objects
 github.com/gophercloud/gophercloud/openstack/objectstorage/v1/swauth
+github.com/gophercloud/gophercloud/openstack/sharedfilesystems/apiversions
+github.com/gophercloud/gophercloud/openstack/sharedfilesystems/v2/availabilityzones
 github.com/gophercloud/gophercloud/openstack/sharedfilesystems/v2/errors
 github.com/gophercloud/gophercloud/openstack/sharedfilesystems/v2/messages
 github.com/gophercloud/gophercloud/openstack/sharedfilesystems/v2/securityservices
@@ -428,7 +441,7 @@ github.com/gophercloud/gophercloud/openstack/db/v1/datastores
 github.com/gophercloud/gophercloud/internal
 github.com/gophercloud/gophercloud/openstack/objectstorage/v1/accounts
 github.com/gophercloud/gophercloud/openstack/identity/v2/tenants
-# github.com/gophercloud/utils v0.0.0-20190313033024-0bcc8e728cb5
+# github.com/gophercloud/utils v0.0.0-20190527093828-25f1b77b8c03
 github.com/gophercloud/utils/openstack/baremetal/v1/nodes
 github.com/gophercloud/utils/openstack/clientconfig
 # github.com/grpc-ecosystem/grpc-gateway v1.8.5
@@ -453,7 +466,7 @@ github.com/hashicorp/go-getter
 github.com/hashicorp/go-hclog
 # github.com/hashicorp/go-multierror v1.0.0
 github.com/hashicorp/go-multierror
-# github.com/hashicorp/go-plugin v1.0.1-0.20190430211030-5692942914bb
+# github.com/hashicorp/go-plugin v1.0.1-0.20190610192547-a1bc61569a26
 github.com/hashicorp/go-plugin
 github.com/hashicorp/go-plugin/internal/plugin
 # github.com/hashicorp/go-safetemp v1.0.0
@@ -492,7 +505,7 @@ github.com/hashicorp/hil/parser
 github.com/hashicorp/hil/scanner
 # github.com/hashicorp/logutils v1.0.0
 github.com/hashicorp/logutils
-# github.com/hashicorp/terraform v0.12.0
+# github.com/hashicorp/terraform v0.12.2
 github.com/hashicorp/terraform/plugin
 github.com/hashicorp/terraform/helper/hashcode
 github.com/hashicorp/terraform/helper/mutexkv
@@ -647,7 +660,7 @@ github.com/terraform-providers/terraform-provider-google/version
 github.com/terraform-providers/terraform-provider-ignition/ignition
 # github.com/terraform-providers/terraform-provider-local v1.2.1
 github.com/terraform-providers/terraform-provider-local/local
-# github.com/terraform-providers/terraform-provider-openstack v1.15.0
+# github.com/terraform-providers/terraform-provider-openstack v1.21.1
 github.com/terraform-providers/terraform-provider-openstack/openstack
 # github.com/terraform-providers/terraform-provider-random v2.0.0+incompatible
 github.com/terraform-providers/terraform-provider-random/random
@@ -670,6 +683,8 @@ github.com/zclconf/go-cty/cty/gocty
 github.com/zclconf/go-cty/cty/set
 github.com/zclconf/go-cty/cty/function
 github.com/zclconf/go-cty/cty/function/stdlib
+# github.com/zclconf/go-cty-yaml v0.1.0
+github.com/zclconf/go-cty-yaml
 # go.opencensus.io v0.21.0
 go.opencensus.io/plugin/ochttp
 go.opencensus.io/plugin/ochttp/propagation/tracecontext
