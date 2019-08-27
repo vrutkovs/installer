@@ -1,7 +1,8 @@
 package ignition
 
 import (
-	"github.com/coreos/ignition/config/v2_1/types"
+	"github.com/coreos/ignition/v2/config/v3_0/types"
+	"github.com/coreos/vcontext/path"
 	"github.com/hashicorp/terraform/helper/schema"
 )
 
@@ -36,12 +37,12 @@ func dataSourceDisk() *schema.Resource {
 							Optional: true,
 							ForceNew: true,
 						},
-						"size": {
+						"sizemib": {
 							Type:     schema.TypeInt,
 							Optional: true,
 							ForceNew: true,
 						},
-						"start": {
+						"startmib": {
 							Type:     schema.TypeInt,
 							Optional: true,
 							ForceNew: true,
@@ -79,40 +80,42 @@ func resourceDiskExists(d *schema.ResourceData, meta interface{}) (bool, error) 
 
 func buildDisk(d *schema.ResourceData, c *cache) (string, error) {
 	disk := &types.Disk{
-		Device:    d.Get("device").(string),
-		WipeTable: d.Get("wipe_table").(bool),
+		Device: d.Get("device").(string),
+	}
+	wipe, hasWipeTable := d.GetOk("wipe_table")
+	if hasWipeTable {
+		bwipe := wipe.(bool)
+		disk.WipeTable = &bwipe
 	}
 
-	if err := handleReport(disk.ValidateDevice()); err != nil {
+	if err := handleReport(disk.Validate(path.ContextPath{})); err != nil {
 		return "", err
 	}
 
 	for _, raw := range d.Get("partition").([]interface{}) {
 		v := raw.(map[string]interface{})
 		p := types.Partition{
-			Label:    v["label"].(string),
-			Number:   v["number"].(int),
-			Size:     v["size"].(int),
-			Start:    v["start"].(int),
-			TypeGUID: v["type_guid"].(string),
+			Number: v["number"].(int),
 		}
-
-		if err := handleReport(p.ValidateLabel()); err != nil {
-			return "", err
+		tlabel := v["label"].(string)
+		if tlabel != "" {
+			p.Label = &tlabel
 		}
-
-		if err := handleReport(p.ValidateGUID()); err != nil {
-			return "", err
+		tsize := v["sizemib"].(int)
+		if tsize != 0 {
+			p.SizeMiB = &tsize
 		}
-
-		if err := handleReport(p.ValidateTypeGUID()); err != nil {
-			return "", err
+		tstart := v["startmib"].(int)
+		if tstart != 0 {
+			p.StartMiB = &tstart
 		}
+		tguid := v["type_guid"].(string)
+		p.TypeGUID = &tguid
 
 		disk.Partitions = append(disk.Partitions, p)
 	}
 
-	if err := handleReport(disk.ValidatePartitions()); err != nil {
+	if err := handleReport(disk.Validate(path.ContextPath{})); err != nil {
 		return "", err
 	}
 

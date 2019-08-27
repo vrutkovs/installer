@@ -19,7 +19,7 @@ var (
 	// was not a valid numeric type.
 	ErrBadJSONAPIID = errors.New(
 		"id should be either string, int(8,16,32,64) or uint(8,16,32,64)")
-	// ErrExpectedSlice is returned when a variable or arugment was expected to
+	// ErrExpectedSlice is returned when a variable or argument was expected to
 	// be a slice of *Structs; MarshalMany will return this error when its
 	// interface{} argument is invalid.
 	ErrExpectedSlice = errors.New("models should be a slice of struct pointers")
@@ -207,9 +207,13 @@ func visitModelNode(model interface{}, included *map[string]*Node,
 	node := new(Node)
 
 	var er error
+	value := reflect.ValueOf(model)
+	if value.IsNil() {
+		return nil, nil
+	}
 
-	modelValue := reflect.ValueOf(model).Elem()
-	modelType := reflect.ValueOf(model).Type().Elem()
+	modelValue := value.Elem()
+	modelType := value.Type().Elem()
 
 	for i := 0; i < modelValue.NumField(); i++ {
 		structField := modelValue.Type().Field(i)
@@ -341,7 +345,7 @@ func visitModelNode(model interface{}, included *map[string]*Node,
 				emptyValue := reflect.Zero(fieldValue.Type())
 
 				// See if we need to omit this field
-				if omitEmpty && fieldValue.Interface() == emptyValue.Interface() {
+				if omitEmpty && reflect.DeepEqual(fieldValue.Interface(), emptyValue.Interface()) {
 					continue
 				}
 

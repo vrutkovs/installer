@@ -1,7 +1,7 @@
 package ignition
 
 import (
-	"github.com/coreos/ignition/config/v2_1/types"
+	"github.com/coreos/ignition/v2/config/v3_0/types"
 	"github.com/hashicorp/terraform/helper/schema"
 )
 
@@ -102,17 +102,9 @@ func resourceUserExists(d *schema.ResourceData, meta interface{}) (bool, error) 
 
 func buildUser(d *schema.ResourceData, c *cache) (string, error) {
 	user := types.PasswdUser{
-		Name:         d.Get("name").(string),
-		UID:          getInt(d, "uid"),
-		Gecos:        d.Get("gecos").(string),
-		HomeDir:      d.Get("home_dir").(string),
-		NoCreateHome: d.Get("no_create_home").(bool),
-		PrimaryGroup: d.Get("primary_group").(string),
-		Groups:       castSliceInterfaceToPasswdUserGroup(d.Get("groups").([]interface{})),
-		NoUserGroup:  d.Get("no_user_group").(bool),
-		NoLogInit:    d.Get("no_log_init").(bool),
-		Shell:        d.Get("shell").(string),
-		System:       d.Get("system").(bool),
+		Name:   d.Get("name").(string),
+		UID:    getInt(d, "uid"),
+		Groups: castSliceInterfaceToPasswdUserGroup(d.Get("groups").([]interface{})),
 		SSHAuthorizedKeys: castSliceInterfaceToSSHAuthorizedKey(
 			d.Get("ssh_authorized_keys").([]interface{}),
 		),
@@ -123,17 +115,61 @@ func buildUser(d *schema.ResourceData, c *cache) (string, error) {
 		user.PasswordHash = &pwd
 	}
 
-	return c.addUser(&user), handleReport(user.Validate())
+	gecos := d.Get("gecos").(string)
+	if gecos != "" {
+		user.Gecos = &gecos
+	}
+
+	homedir := d.Get("home_dir").(string)
+	if homedir != "" {
+		user.HomeDir = &homedir
+	}
+
+	primaryGroup := d.Get("primary_group").(string)
+	if primaryGroup != "" {
+		user.PrimaryGroup = &primaryGroup
+	}
+
+	shell := d.Get("shell").(string)
+	if shell != "" {
+		user.Shell = &shell
+	}
+
+	nocreatehome, hasNocreatehome := d.GetOk("no_create_home")
+	if hasNocreatehome {
+		bnocreatehome := nocreatehome.(bool)
+		user.NoCreateHome = &bnocreatehome
+	}
+
+	nousergroup, hasNousergroup := d.GetOk("no_user_group")
+	if hasNousergroup {
+		bnousergroup := nousergroup.(bool)
+		user.NoUserGroup = &bnousergroup
+	}
+
+	nologinit, hasNologinit := d.GetOk("no_log_init")
+	if hasNologinit {
+		bnologinit := nologinit.(bool)
+		user.NoLogInit = &bnologinit
+	}
+
+	system, hasSystem := d.GetOk("system")
+	if hasSystem {
+		bsystem := system.(bool)
+		user.System = &bsystem
+	}
+
+	return c.addUser(&user), nil
 }
 
-func castSliceInterfaceToPasswdUserGroup(i []interface{}) []types.PasswdUserGroup {
-	var res []types.PasswdUserGroup
+func castSliceInterfaceToPasswdUserGroup(i []interface{}) []types.Group {
+	var res []types.Group
 	for _, g := range i {
 		if g == nil {
 			continue
 		}
 
-		res = append(res, types.PasswdUserGroup(g.(string)))
+		res = append(res, types.Group(g.(string)))
 	}
 	return res
 }

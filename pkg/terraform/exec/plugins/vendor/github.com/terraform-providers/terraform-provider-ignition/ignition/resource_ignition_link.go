@@ -1,7 +1,8 @@
 package ignition
 
 import (
-	"github.com/coreos/ignition/config/v2_1/types"
+	"github.com/coreos/ignition/v2/config/v3_0/types"
+	"github.com/coreos/vcontext/path"
 	"github.com/hashicorp/terraform/helper/schema"
 )
 
@@ -65,10 +66,14 @@ func resourceLinkExists(d *schema.ResourceData, meta interface{}) (bool, error) 
 
 func buildLink(d *schema.ResourceData, c *cache) (string, error) {
 	link := &types.Link{}
-	link.Filesystem = d.Get("filesystem").(string)
 	link.Path = d.Get("path").(string)
 	link.Target = d.Get("target").(string)
-	link.Hard = d.Get("hard").(bool)
+
+	hard, hasHard := d.GetOk("hard")
+	if hasHard {
+		bhard := hard.(bool)
+		link.Hard = &bhard
+	}
 
 	uid := d.Get("uid").(int)
 	if uid != 0 {
@@ -80,5 +85,5 @@ func buildLink(d *schema.ResourceData, c *cache) (string, error) {
 		link.Group = types.NodeGroup{ID: &gid}
 	}
 
-	return c.addLink(link), handleReport(link.Validate())
+	return c.addLink(link), handleReport(link.Validate(path.ContextPath{}))
 }
