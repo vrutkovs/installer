@@ -4,9 +4,12 @@ go 1.12
 
 require (
 	cloud.google.com/go v0.41.0 // indirect
-	github.com/Azure/azure-sdk-for-go v32.5.0+incompatible
-	github.com/Azure/go-autorest v10.15.4+incompatible
-	github.com/Azure/go-autorest/tracing v0.5.0 // indirect
+	github.com/Azure/azure-sdk-for-go v29.0.0+incompatible
+	github.com/Azure/go-autorest v12.1.0+incompatible // indirect
+	github.com/Azure/go-autorest/autorest v0.9.0
+	github.com/Azure/go-autorest/autorest/azure/auth v0.3.0
+	github.com/Azure/go-autorest/autorest/to v0.3.0
+	github.com/Azure/go-autorest/autorest/validation v0.2.0 // indirect
 	github.com/Netflix/go-expect v0.0.0-20190729225929-0e00d9168667 // indirect
 	github.com/apparentlymart/go-cidr v1.0.0
 	github.com/awalterschulze/gographviz v0.0.0-20170410065617-c84395e536e1
@@ -16,12 +19,15 @@ require (
 	github.com/coreos/ignition/v2 v2.0.1
 	github.com/ghodss/yaml v1.0.0
 	github.com/go-logr/zapr v0.1.0 // indirect
+	github.com/gogo/protobuf v1.2.2-0.20190723190241-65acae22fc9d // indirect
 	github.com/golang/mock v1.3.1
 	github.com/gophercloud/gophercloud v0.3.1-0.20190807175045-25a84d593c97
 	github.com/gophercloud/utils v0.0.0-20190527093828-25f1b77b8c03
 	github.com/gopherjs/gopherjs v0.0.0-20181103185306-d547d1d9531e // indirect
+	github.com/gregjones/httpcache v0.0.0-20190611155906-901d90724c79 // indirect
 	github.com/hashicorp/terraform v0.12.7 // indirect
 	github.com/hinshun/vt10x v0.0.0-20180809195222-d55458df857c // indirect
+	github.com/json-iterator/go v1.1.7 // indirect
 	github.com/kballard/go-shellquote v0.0.0-20180428030007-95032a82bc51 // indirect
 	github.com/kr/fs v0.1.0 // indirect
 	github.com/kr/pty v1.1.5 // indirect
@@ -29,6 +35,8 @@ require (
 	github.com/metal3-io/baremetal-operator v0.0.0-20190822124022-58c455095b51
 	github.com/metal3-io/cluster-api-provider-baremetal v0.0.0-20190823184140-acab6c77caaa
 	github.com/mgutz/ansi v0.0.0-20170206155736-9520e82c474b // indirect
+	github.com/onsi/ginkgo v1.8.0 // indirect
+	github.com/onsi/gomega v1.5.0 // indirect
 	github.com/openshift/api v0.0.0-20190806225813-d2972510af76
 	github.com/openshift/client-go v0.0.0-20190806162413-e9678e3b850d
 	github.com/openshift/cloud-credential-operator v0.0.0-20190619194303-c89dc7733001
@@ -38,6 +46,7 @@ require (
 	github.com/openshift/library-go v0.0.0-20190704075327-f8abdcd57c46
 	github.com/openshift/machine-config-operator v0.0.0-00010101000000-000000000000
 	github.com/pborman/uuid v1.2.0
+	github.com/peterbourgon/diskv v2.0.1+incompatible // indirect
 	github.com/pkg/errors v0.8.1
 	github.com/pkg/sftp v1.10.0
 	github.com/sirupsen/logrus v1.4.2
@@ -46,14 +55,16 @@ require (
 	github.com/stretchr/testify v1.3.0
 	github.com/vincent-petithory/dataurl v0.0.0-20160330182126-9a301d65acbb
 	golang.org/x/crypto v0.0.0-20190701094942-4def268fd1a4
+	golang.org/x/net v0.0.0-20190812203447-cdfb69ac37fc // indirect
 	golang.org/x/oauth2 v0.0.0-20190604053449-0f29369cfe45
 	golang.org/x/sys v0.0.0-20190801041406-cbf593c0f2f3
 	google.golang.org/api v0.7.0
 	gopkg.in/AlecAivazis/survey.v1 v1.8.1
 	gopkg.in/ini.v1 v1.42.0
-	k8s.io/api v0.0.0-20190826194732-9f642ccb7a30
-	k8s.io/apimachinery v0.0.0-20190826114657-e31a5531b558
+	k8s.io/api v0.0.0-20190816222004-e3a6b8045b0b
+	k8s.io/apimachinery v0.0.0-20190816221834-a9f1d8a9c101
 	k8s.io/client-go v11.0.0+incompatible
+	k8s.io/klog v0.4.0 // indirect
 	k8s.io/utils v0.0.0-20190801114015-581e00157fb1
 	sigs.k8s.io/cluster-api-provider-aws v0.0.0-20190826194037-47eff4512368
 	sigs.k8s.io/cluster-api-provider-azure v0.0.0-20190820233118-7bf6590e249c
