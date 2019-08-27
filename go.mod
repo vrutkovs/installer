@@ -17,11 +17,13 @@ require (
 	github.com/aws/aws-sdk-go v1.22.0
 	github.com/containers/image v2.0.0+incompatible
 	github.com/coreos/ignition v0.33.0
+	github.com/coreos/ignition/v2 v2.0.1
 	github.com/dmacvicar/terraform-provider-libvirt v0.5.2
 	github.com/docker/docker v1.13.1 // indirect
 	github.com/dustinkirkland/golang-petname v0.0.0-20190613200456-11339a705ed2 // indirect
 	github.com/exponent-io/jsonpath v0.0.0-20151013193312-d6023ce2651d // indirect
 	github.com/ghodss/yaml v1.0.0
+	github.com/go-logr/zapr v0.1.0 // indirect
 	github.com/golang/mock v1.3.1
 	github.com/gophercloud/gophercloud v0.3.1-0.20190807175045-25a84d593c97
 	github.com/gophercloud/utils v0.0.0-20190527093828-25f1b77b8c03
@@ -47,16 +49,15 @@ require (
 	github.com/openshift/cluster-api-provider-gcp v0.0.0-20190801154446-f5146705932b
 	github.com/openshift/cluster-api-provider-libvirt v0.0.0-20190613141010-ecea5317a4ab
 	github.com/openshift/library-go v0.0.0-20190704075327-f8abdcd57c46
-	github.com/openshift/machine-config-operator v4.2.0-alpha.0+incompatible
+	github.com/openshift/machine-config-operator v0.0.0-00010101000000-000000000000
 	github.com/pborman/uuid v1.2.0
-	github.com/petar/GoLLRB v0.0.0-20130427215148-53be0d36a84c // indirect
 	github.com/peterbourgon/diskv v2.0.1+incompatible // indirect
 	github.com/pkg/errors v0.8.1
 	github.com/pkg/sftp v1.10.0
+	github.com/prometheus/client_golang v1.1.0 // indirect
+	github.com/prometheus/client_model v0.0.0-20190812154241-14fe0d1b01d4 // indirect
 	github.com/russross/blackfriday v2.0.0+incompatible // indirect
-	github.com/shurcooL/httpfs v0.0.0-20190707220628-8d4bc4ba7749 // indirect
 	github.com/shurcooL/sanitized_anchor_name v1.0.0 // indirect
-	github.com/shurcooL/vfsgen v0.0.0-20181020040650-a97a25d856ca // indirect
 	github.com/sirupsen/logrus v1.4.2
 	github.com/spf13/cobra v0.0.5
 	github.com/stoewer/go-strcase v1.0.2 // indirect
@@ -68,16 +69,19 @@ require (
 	github.com/terraform-providers/terraform-provider-local v1.3.0
 	github.com/terraform-providers/terraform-provider-openstack v1.21.1
 	github.com/terraform-providers/terraform-provider-random v2.0.0+incompatible
+	github.com/ugorji/go v1.1.7 // indirect
 	github.com/vincent-petithory/dataurl v0.0.0-20160330182126-9a301d65acbb
 	golang.org/x/crypto v0.0.0-20190701094942-4def268fd1a4
 	golang.org/x/oauth2 v0.0.0-20190604053449-0f29369cfe45
-	golang.org/x/sys v0.0.0-20190712062909-fae7ac547cb7
+	golang.org/x/sys v0.0.0-20190801041406-cbf593c0f2f3
 	google.golang.org/api v0.7.0
 	gopkg.in/AlecAivazis/survey.v1 v1.8.1
+	gopkg.in/airbrake/gobrake.v2 v2.0.9 // indirect
+	gopkg.in/gemnasium/logrus-airbrake-hook.v2 v2.1.2 // indirect
 	gopkg.in/ini.v1 v1.42.0
 	gopkg.in/yaml.v2 v2.2.2
-	k8s.io/api v0.0.0-20190820101039-d651a1528133
-	k8s.io/apimachinery v0.0.0-20190820100751-ac02f8882ef6
+	k8s.io/api v0.0.0-20190826194732-9f642ccb7a30
+	k8s.io/apimachinery v0.0.0-20190826114657-e31a5531b558
 	k8s.io/cli-runtime v0.0.0-20190823123533-5ef25e8d2ab0 // indirect
 	k8s.io/client-go v11.0.1-0.20190409021438-1a26190bd76a+incompatible
 	k8s.io/kubernetes v1.14.6
@@ -85,7 +89,8 @@ require (
 	sigs.k8s.io/cluster-api-provider-aws v0.0.0-20190826194037-47eff4512368
 	sigs.k8s.io/cluster-api-provider-azure v0.0.0-20190820233118-7bf6590e249c
 	sigs.k8s.io/cluster-api-provider-openstack v0.0.0-20190826064620-dcd9c3c09451
-	sigs.k8s.io/controller-runtime v0.2.0 // indirect
+	sigs.k8s.io/controller-runtime v0.2.0-alpha.0 // indirect
+	sigs.k8s.io/testing_frameworks v0.1.1 // indirect
 )
 
 replace (
