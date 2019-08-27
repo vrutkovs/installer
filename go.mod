@@ -14,6 +14,7 @@ require (
 	github.com/aws/aws-sdk-go v1.25.3
 	github.com/containers/image v2.0.0+incompatible
 	github.com/coreos/ignition v0.26.0
+	github.com/coreos/ignition/v2 v2.0.1
 	github.com/dustinkirkland/golang-petname v0.0.0-20190613200456-11339a705ed2 // indirect
 	github.com/emicklei/go-restful v2.10.0+incompatible // indirect
 	github.com/ghodss/yaml v1.0.0
