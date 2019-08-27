@@ -13,11 +13,17 @@ require (
 	github.com/hashicorp/serf v0.0.0-20171022020050-c20a0b1b1ea9 // indirect
 	github.com/hashicorp/terraform v0.12.0-rc1
 	github.com/hashicorp/yamux v0.0.0-20181012175058-2f1d1f20f75d // indirect
+	github.com/json-iterator/go v1.1.7 // indirect
 	github.com/lib/pq v1.1.1 // indirect
 	github.com/mitchellh/cli v1.0.0
 	github.com/mitchellh/go-homedir v1.1.0 // indirect
+	github.com/modern-go/reflect2 v1.0.1 // indirect
 	github.com/pkg/errors v0.8.0
-	github.com/spf13/afero v1.2.2 // indirect
 	github.com/vmihailenco/msgpack v4.0.4+incompatible // indirect
 	go.opencensus.io v0.19.3 // indirect
+	k8s.io/apimachinery v0.0.0-20190313205120-d7deff9243b1 // indirect
+	k8s.io/client-go v11.0.0+incompatible // indirect
+	k8s.io/klog v0.4.0 // indirect
+	k8s.io/utils v0.0.0-20190809000727-6c36bc71fc4a // indirect
+	sigs.k8s.io/yaml v1.1.0 // indirect
 )

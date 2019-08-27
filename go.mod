@@ -5,10 +5,7 @@ go 1.12
 require (
 	cloud.google.com/go v0.41.0 // indirect
 	github.com/Azure/azure-sdk-for-go v32.5.0+incompatible
-	github.com/Azure/go-autorest/autorest v0.9.0
-	github.com/Azure/go-autorest/autorest/azure/auth v0.3.0
-	github.com/Azure/go-autorest/autorest/to v0.3.0
-	github.com/Azure/go-autorest/autorest/validation v0.1.0 // indirect
+	github.com/Azure/go-autorest/tracing v0.5.0 // indirect
 	github.com/Netflix/go-expect v0.0.0-20190729225929-0e00d9168667 // indirect
 	github.com/apparentlymart/go-cidr v1.0.0
 	github.com/awalterschulze/gographviz v0.0.0-20170410065617-c84395e536e1
@@ -42,8 +39,6 @@ require (
 	github.com/pborman/uuid v1.2.0
 	github.com/pkg/errors v0.8.1
 	github.com/pkg/sftp v1.10.0
-	github.com/shurcooL/httpfs v0.0.0-20190707220628-8d4bc4ba7749 // indirect
-	github.com/shurcooL/vfsgen v0.0.0-20181202132449-6a9ea43bcacd // indirect
 	github.com/sirupsen/logrus v1.4.2
 	github.com/smartystreets/assertions v0.0.0-20190116191733-b6c0e53d7304 // indirect
 	github.com/spf13/cobra v0.0.5
@@ -60,7 +55,7 @@ require (
 	gopkg.in/ini.v1 v1.42.0
 	k8s.io/api v0.0.0-20190826194732-9f642ccb7a30
 	k8s.io/apimachinery v0.0.0-20190826114657-e31a5531b558
-	k8s.io/client-go v11.0.1-0.20190409021438-1a26190bd76a+incompatible
+	k8s.io/client-go v11.0.0+incompatible
 	k8s.io/utils v0.0.0-20190801114015-581e00157fb1
 	sigs.k8s.io/cluster-api-provider-aws v0.0.0-20190826194037-47eff4512368
 	sigs.k8s.io/cluster-api-provider-azure v0.0.0-20190820233118-7bf6590e249c
