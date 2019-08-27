@@ -116,17 +116,16 @@ type BareMetalHostSpec struct {
 	Taints []corev1.Taint `json:"taints,omitempty"`
 
 	// How do we connect to the BMC?
-	BMC BMCDetails `json:"bmc,omitempty"`
+	BMC BMCDetails `json:"bmc"`
 
 	// What is the name of the hardware profile for this host? It
 	// should only be necessary to set this when inspection cannot
 	// automatically determine the profile.
-	HardwareProfile string `json:"hardwareProfile,omitempty"`
+	HardwareProfile string `json:"hardwareProfile"`
 
 	// Which MAC address will PXE boot? This is optional for some
 	// types, but required for libvirt VMs driven by vbmc.
-	// +kubebuilder:validation:Pattern=[0-9a-fA-F]{2}(:[0-9a-fA-F]{2}){5}
-	BootMACAddress string `json:"bootMACAddress,omitempty"`
+	BootMACAddress string `json:"bootMACAddress"`
 
 	// Should the server be online?
 	Online bool `json:"online"`
@@ -144,13 +143,13 @@ type BareMetalHostSpec struct {
 	UserData *corev1.SecretReference `json:"userData,omitempty"`
 
 	// Description is a human-entered text used to help identify the host
-	Description string `json:"description,omitempty"`
+	Description string `json:"description"`
 
 	// ExternallyProvisioned means something else is managing the
 	// image running on the host and the operator should only manage
 	// the power status and hardware inventory inspection. If the
 	// Image field is filled in, this field is ignored.
-	ExternallyProvisioned bool `json:"externallyProvisioned,omitempty"`
+	ExternallyProvisioned bool `json:"externallyProvisioned"`
 }
 
 // Image holds the details of an image either to provisioned or that
@@ -234,14 +233,11 @@ type Storage struct {
 }
 
 // VLANID is a 12-bit 802.1Q VLAN identifier
-type VLANID int32
+type VLANID int16
 
 // VLAN represents the name and ID of a VLAN
 type VLAN struct {
-	// +kubebuilder:validation:Minimum=0
-	// +kubebuilder:validation:Maximum=4094
-	ID VLANID `json:"id"`
-
+	ID   VLANID `json:"id"`
 	Name string `json:"name,omitempty"`
 }
 
@@ -254,7 +250,6 @@ type NIC struct {
 	Model string `json:"model"`
 
 	// The device MAC addr
-	// +kubebuilder:validation:Pattern=[0-9a-fA-F]{2}(:[0-9a-fA-F]{2}){5}
 	MAC string `json:"mac"`
 
 	// The IP address of the device
@@ -267,8 +262,6 @@ type NIC struct {
 	VLANs []VLAN `json:"vlans,omitempty"`
 
 	// The untagged VLAN ID
-	// +kubebuilder:validation:Minimum=0
-	// +kubebuilder:validation:Maximum=4094
 	VLANID VLANID `json:"vlanId"`
 
 	// Whether the NIC is PXE Bootable
@@ -319,20 +312,6 @@ type CredentialsStatus struct {
 	Version   string                  `json:"credentialsVersion,omitempty"`
 }
 
-// Match compares the saved status information with the name and
-// content of a secret object.
-func (cs CredentialsStatus) Match(secret corev1.Secret) bool {
-	switch {
-	case cs.Reference == nil:
-		return false
-	case cs.Reference.Name != secret.ObjectMeta.Name:
-		return false
-	case cs.Version != secret.ObjectMeta.ResourceVersion:
-		return false
-	}
-	return true
-}
-
 // BareMetalHostStatus defines the observed state of BareMetalHost
 type BareMetalHostStatus struct {
 	// Important: Run "operator-sdk generate k8s" to regenerate code
@@ -356,9 +335,6 @@ type BareMetalHostStatus struct {
 
 	// the last credentials we were able to validate as working
 	GoodCredentials CredentialsStatus `json:"goodCredentials"`
-
-	// the last credentials we sent to the provisioning backend
-	TriedCredentials CredentialsStatus `json:"triedCredentials"`
 
 	// the last error message reported by the provisioning subsystem
 	ErrorMessage string `json:"errorMessage"`
@@ -384,15 +360,6 @@ type ProvisionStatus struct {
 
 // BareMetalHost is the Schema for the baremetalhosts API
 // +k8s:openapi-gen=true
-// +kubebuilder:resource:shortName=bmh;bmhost
-// +kubebuilder:subresource:status
-// +kubebuilder:printcolumn:name="Status",type="string",JSONPath=".status.operationalStatus",description="Operational status"
-// +kubebuilder:printcolumn:name="Provisioning Status",type="string",JSONPath=".status.provisioning.state",description="Provisioning status"
-// +kubebuilder:printcolumn:name="Consumer",type="string",JSONPath=".spec.consumerRef.name",description="Consumer using this host"
-// +kubebuilder:printcolumn:name="BMC",type="string",JSONPath=".spec.bmc.address",description="Address of management controller"
-// +kubebuilder:printcolumn:name="Hardware Profile",type="string",JSONPath=".status.hardwareProfile",description="The type of hardware detected"
-// +kubebuilder:printcolumn:name="Online",type="string",JSONPath=".spec.online",description="Whether the host is online or not"
-// +kubebuilder:printcolumn:name="Error",type="string",JSONPath=".status.errorMessage",description="Most recent error"
 type BareMetalHost struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
@@ -513,17 +480,30 @@ func (host *BareMetalHost) CredentialsKey() types.NamespacedName {
 	}
 }
 
+// CredentialsNeedValidation compares the secret with the last one
+// known to work and report if the new ones need to be checked.
+func (host *BareMetalHost) CredentialsNeedValidation(currentSecret corev1.Secret) bool {
+	currentRef := host.Status.GoodCredentials.Reference
+	currentVersion := host.Status.GoodCredentials.Version
+	newName := host.Spec.BMC.CredentialsName
+
+	switch {
+	case currentRef == nil:
+		return true
+	case currentRef.Name != newName:
+		return true
+	case currentVersion != currentSecret.ObjectMeta.ResourceVersion:
+		return true
+	}
+	return false
+}
+
 // NeedsHardwareInspection looks at the state of the host to determine
 // if hardware inspection should be run.
 func (host *BareMetalHost) NeedsHardwareInspection() bool {
-	if host.Spec.ExternallyProvisioned {
+	if host.WasExternallyProvisioned() || host.Spec.ConsumerRef != nil {
 		// Never perform inspection if we already know something is
-		// using the host and we didn't provision it.
-		return false
-	}
-	if host.WasProvisioned() {
-		// Never perform inspection if we have already provisioned
-		// this host, because we don't want to reboot it.
+		// using the host.
 		return false
 	}
 	return host.Status.HardwareDetails == nil
@@ -533,9 +513,6 @@ func (host *BareMetalHost) NeedsHardwareInspection() bool {
 // status and returns true when more work is needed or false
 // otherwise.
 func (host *BareMetalHost) NeedsProvisioning() bool {
-	if host.Spec.ExternallyProvisioned {
-		return false
-	}
 	if !host.Spec.Online {
 		// The host is not supposed to be powered on.
 		return false
@@ -558,9 +535,6 @@ func (host *BareMetalHost) NeedsProvisioning() bool {
 // WasProvisioned returns true when we think we have placed an image
 // on the host.
 func (host *BareMetalHost) WasProvisioned() bool {
-	if host.Spec.ExternallyProvisioned {
-		return false
-	}
 	if host.Status.Provisioning.Image.URL != "" {
 		// We have an image provisioned.
 		return true
@@ -568,12 +542,30 @@ func (host *BareMetalHost) WasProvisioned() bool {
 	return false
 }
 
+// WasExternallyProvisioned returns true when we think something else
+// is managing the image running on the host.
+func (host *BareMetalHost) WasExternallyProvisioned() bool {
+	// NOTE(dhellmann): The Image setting takes precedent over the
+	// ExternallyProvisioned flag.
+	//
+	// The user can change the ExternallyProvisioned field at any
+	// time. So, they could start to provision a host in the normal
+	// way and then while it's in the middle of provisioning set
+	// ExternallyProvisioned=true. At that point, the logic managing
+	// the provisioning workflow would be circumvented and the host
+	// status would never update properly.
+	//
+	// We could allow that, but it's easier to reason about the host
+	// if we say that giving an image and saying a host is externally
+	// provisioned are mutually exclusive, but the image has
+	// precedence if both are provided. We end up with fewer overall
+	// transitions in the state diagram that way.
+	return host.Spec.ExternallyProvisioned && host.Spec.Image == nil
+}
+
 // NeedsDeprovisioning compares the settings with the provisioning
 // status and returns true when the host should be deprovisioned.
 func (host *BareMetalHost) NeedsDeprovisioning() bool {
-	if host.Spec.ExternallyProvisioned {
-		return false
-	}
 	if host.Status.Provisioning.Image.URL == "" {
 		return false
 	}
@@ -592,17 +584,6 @@ func (host *BareMetalHost) NeedsDeprovisioning() bool {
 func (host *BareMetalHost) UpdateGoodCredentials(currentSecret corev1.Secret) {
 	host.Status.GoodCredentials.Version = currentSecret.ObjectMeta.ResourceVersion
 	host.Status.GoodCredentials.Reference = &corev1.SecretReference{
-		Name:      currentSecret.ObjectMeta.Name,
-		Namespace: currentSecret.ObjectMeta.Namespace,
-	}
-}
-
-// UpdateTriedCredentials modifies the TriedCredentials portion of the
-// Status struct to record the details of the secret containing
-// credentials known to work.
-func (host *BareMetalHost) UpdateTriedCredentials(currentSecret corev1.Secret) {
-	host.Status.TriedCredentials.Version = currentSecret.ObjectMeta.ResourceVersion
-	host.Status.TriedCredentials.Reference = &corev1.SecretReference{
 		Name:      currentSecret.ObjectMeta.Name,
 		Namespace: currentSecret.ObjectMeta.Namespace,
 	}

@@ -1,17 +1,5 @@
 package bmc
 
-func init() {
-	registerFactory("irmc", newIRMCAccessDetails)
-}
-
-func newIRMCAccessDetails(bmcType, portNum, hostname, path string) (AccessDetails, error) {
-	return &iRMCAccessDetails{
-		bmcType:  bmcType,
-		portNum:  portNum,
-		hostname: hostname,
-	}, nil
-}
-
 type iRMCAccessDetails struct {
 	bmcType  string
 	portNum  string
@@ -47,7 +35,7 @@ func (a *iRMCAccessDetails) DriverInfo(bmcCreds Credentials) map[string]interfac
 	if a.portNum != "" {
 		result["irmc_port"] = a.portNum
 	}
-
+	
 	return result
 }
 

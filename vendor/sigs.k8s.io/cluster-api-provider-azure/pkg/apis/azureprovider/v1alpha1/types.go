@@ -23,10 +23,6 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
-// ResourceSpec defines a generic spec that can used to define Azure resources.
-// TODO: ResourceSpec should be removed once concrete specs have been defined for all Azure resources in use.
-type ResourceSpec interface{}
-
 // TODO: Write type tests
 
 // AzureResourceReference is a reference to a specific Azure resource by ID
@@ -71,9 +67,11 @@ type AzureMachineProviderCondition struct {
 
 const (
 	// ControlPlane machine label
-	ControlPlane string = "controlplane"
+	ControlPlane string = "master"
 	// Node machine label
-	Node string = "node"
+	Node string = "worker"
+	// MachineRoleLabel machine label to determine the role
+	MachineRoleLabel = "machine.openshift.io/cluster-api-machine-role"
 )
 
 // Network encapsulates Azure networking resources.
@@ -339,8 +337,6 @@ type VM struct {
 	ID   string `json:"id,omitempty"`
 	Name string `json:"name,omitempty"`
 
-	AvailabilityZone string `json:"availabilityZone,omitempty"`
-
 	// Hardware profile
 	VMSize string `json:"vmSize,omitempty"`
 
@@ -374,11 +370,15 @@ type VM struct {
 	//AvailabilitySet *SubResource `json:"availabilitySet,omitempty"`
 }
 
+// Image is a mirror of azure sdk compute.ImageReference
 type Image struct {
+	// Fields below refer to os images in marketplace
 	Publisher string `json:"publisher"`
 	Offer     string `json:"offer"`
 	SKU       string `json:"sku"`
 	Version   string `json:"version"`
+	// ResourceID represents the location of OS Image in azure subscription
+	ResourceID string `json:"resourceID"`
 }
 
 // VMIdentity defines the identity of the virtual machine, if configured.
@@ -393,9 +393,3 @@ type OSDisk struct {
 type ManagedDisk struct {
 	StorageAccountType string `json:"storageAccountType"`
 }
-
-const (
-	AnnotationClusterInfrastructureReady = "azure.cluster.sigs.k8s.io/infrastructure-ready"
-	ValueReady                           = "true"
-	AnnotationControlPlaneReady          = "azure.cluster.sigs.k8s.io/control-plane-ready"
-)
