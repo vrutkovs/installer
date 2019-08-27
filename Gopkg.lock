@@ -505,7 +505,7 @@
     "pkg/hardware",
   ]
   pruneopts = "NUT"
-  revision = "7fa47751bf92fe5efe4d7c3fe4dd75ea980424bc"
+  revision = "58c455095b513a87e516d2b0664973b7040de2d6"
   source = "https://github.com/openshift/baremetal-operator"
 
 [[projects]]
@@ -517,7 +517,7 @@
     "pkg/apis/baremetal/v1alpha1",
   ]
   pruneopts = "NUT"
-  revision = "53df0c29f8e20d5ff6a42e95589969b59359eab6"
+  revision = "acab6c77caaadbd09485fcc294b7eaea219687b6"
   source = "https://github.com/openshift/cluster-api-provider-baremetal/pkg/apis"
 
 [[projects]]
@@ -1234,7 +1234,7 @@
     "pkg/apis/awsproviderconfig/v1beta1",
   ]
   pruneopts = "NUT"
-  revision = "cf06d47b6ceedfe48ecead44424245b86a423f4b"
+  revision = "47eff4512368f248fe5bc79f23e3127e394af212"
   source = "https://github.com/openshift/cluster-api-provider-aws.git"
 
 [[projects]]
@@ -1247,7 +1247,7 @@
     "pkg/apis/azureprovider/v1beta1",
   ]
   pruneopts = "NUT"
-  revision = "6a50a8c59d8ab8999d93f68e8ebb31821b53552c"
+  revision = "7bf6590e249c62d8a99509ad0dcad487aeb0cfd3"
   source = "https://github.com/openshift/cluster-api-provider-azure.git"
 
 [[projects]]
@@ -1259,7 +1259,7 @@
     "pkg/apis/openstackproviderconfig/v1alpha1",
   ]
   pruneopts = "NUT"
-  revision = "076f2c35a0307178f4d6c32bd2f185d8e35d5a84"
+  revision = "dcd9c3c09451557da2edd33ec7bc7cc331ac01ba"
   source = "https://github.com/openshift/cluster-api-provider-openstack.git"
 
 [[projects]]
