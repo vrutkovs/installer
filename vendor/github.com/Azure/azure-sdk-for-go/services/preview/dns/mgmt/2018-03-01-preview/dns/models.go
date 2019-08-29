@@ -90,13 +90,13 @@ type ARecord struct {
 
 // AzureEntityResource the resource model definition for a Azure Resource Manager resource with an etag.
 type AzureEntityResource struct {
-	// Etag - READ-ONLY; Resource Etag.
+	// Etag - Resource Etag.
 	Etag *string `json:"etag,omitempty"`
-	// ID - READ-ONLY; Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}
+	// ID - Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}
 	ID *string `json:"id,omitempty"`
-	// Name - READ-ONLY; The name of the resource
+	// Name - The name of the resource
 	Name *string `json:"name,omitempty"`
-	// Type - READ-ONLY; The type of the resource. Ex- Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts.
+	// Type - The type of the resource. Ex- Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts.
 	Type *string `json:"type,omitempty"`
 }
 
@@ -151,11 +151,11 @@ type NsRecord struct {
 // ProxyResource the resource model definition for a ARM proxy resource. It will have everything other than
 // required location and tags
 type ProxyResource struct {
-	// ID - READ-ONLY; Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}
+	// ID - Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}
 	ID *string `json:"id,omitempty"`
-	// Name - READ-ONLY; The name of the resource
+	// Name - The name of the resource
 	Name *string `json:"name,omitempty"`
-	// Type - READ-ONLY; The type of the resource. Ex- Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts.
+	// Type - The type of the resource. Ex- Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts.
 	Type *string `json:"type,omitempty"`
 }
 
@@ -168,11 +168,11 @@ type PtrRecord struct {
 // RecordSet describes a DNS record set (a collection of DNS records with the same name and type).
 type RecordSet struct {
 	autorest.Response `json:"-"`
-	// ID - READ-ONLY; The ID of the record set.
+	// ID - The ID of the record set.
 	ID *string `json:"id,omitempty"`
-	// Name - READ-ONLY; The name of the record set.
+	// Name - The name of the record set.
 	Name *string `json:"name,omitempty"`
-	// Type - READ-ONLY; The type of the record set.
+	// Type - The type of the record set.
 	Type *string `json:"type,omitempty"`
 	// Etag - The etag of the record set.
 	Etag *string `json:"etag,omitempty"`
@@ -183,6 +183,15 @@ type RecordSet struct {
 // MarshalJSON is the custom marshaler for RecordSet.
 func (rs RecordSet) MarshalJSON() ([]byte, error) {
 	objectMap := make(map[string]interface{})
+	if rs.ID != nil {
+		objectMap["id"] = rs.ID
+	}
+	if rs.Name != nil {
+		objectMap["name"] = rs.Name
+	}
+	if rs.Type != nil {
+		objectMap["type"] = rs.Type
+	}
 	if rs.Etag != nil {
 		objectMap["etag"] = rs.Etag
 	}
@@ -257,7 +266,7 @@ type RecordSetListResult struct {
 	autorest.Response `json:"-"`
 	// Value - Information about the record sets in the response.
 	Value *[]RecordSet `json:"value,omitempty"`
-	// NextLink - READ-ONLY; The continuation token for the next page of results.
+	// NextLink - The continuation token for the next page of results.
 	NextLink *string `json:"nextLink,omitempty"`
 }
 
@@ -404,7 +413,7 @@ type RecordSetProperties struct {
 	Metadata map[string]*string `json:"metadata"`
 	// TTL - The TTL (time-to-live) of the records in the record set.
 	TTL *int64 `json:"TTL,omitempty"`
-	// Fqdn - READ-ONLY; Fully qualified domain name of the record set.
+	// Fqdn - Fully qualified domain name of the record set.
 	Fqdn *string `json:"fqdn,omitempty"`
 	// ARecords - The list of A records in the record set.
 	ARecords *[]ARecord `json:"ARecords,omitempty"`
@@ -436,6 +445,9 @@ func (rsp RecordSetProperties) MarshalJSON() ([]byte, error) {
 	}
 	if rsp.TTL != nil {
 		objectMap["TTL"] = rsp.TTL
+	}
+	if rsp.Fqdn != nil {
+		objectMap["fqdn"] = rsp.Fqdn
 	}
 	if rsp.ARecords != nil {
 		objectMap["ARecords"] = rsp.ARecords
@@ -478,11 +490,11 @@ type RecordSetUpdateParameters struct {
 
 // Resource ...
 type Resource struct {
-	// ID - READ-ONLY; Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}
+	// ID - Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}
 	ID *string `json:"id,omitempty"`
-	// Name - READ-ONLY; The name of the resource
+	// Name - The name of the resource
 	Name *string `json:"name,omitempty"`
-	// Type - READ-ONLY; The type of the resource. Ex- Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts.
+	// Type - The type of the resource. Ex- Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts.
 	Type *string `json:"type,omitempty"`
 }
 
@@ -528,11 +540,11 @@ type TrackedResource struct {
 	Tags map[string]*string `json:"tags"`
 	// Location - The geo-location where the resource lives
 	Location *string `json:"location,omitempty"`
-	// ID - READ-ONLY; Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}
+	// ID - Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}
 	ID *string `json:"id,omitempty"`
-	// Name - READ-ONLY; The name of the resource
+	// Name - The name of the resource
 	Name *string `json:"name,omitempty"`
-	// Type - READ-ONLY; The type of the resource. Ex- Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts.
+	// Type - The type of the resource. Ex- Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts.
 	Type *string `json:"type,omitempty"`
 }
 
@@ -544,6 +556,15 @@ func (tr TrackedResource) MarshalJSON() ([]byte, error) {
 	}
 	if tr.Location != nil {
 		objectMap["location"] = tr.Location
+	}
+	if tr.ID != nil {
+		objectMap["id"] = tr.ID
+	}
+	if tr.Name != nil {
+		objectMap["name"] = tr.Name
+	}
+	if tr.Type != nil {
+		objectMap["type"] = tr.Type
 	}
 	return json.Marshal(objectMap)
 }
@@ -565,11 +586,11 @@ type Zone struct {
 	Tags map[string]*string `json:"tags"`
 	// Location - The geo-location where the resource lives
 	Location *string `json:"location,omitempty"`
-	// ID - READ-ONLY; Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}
+	// ID - Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}
 	ID *string `json:"id,omitempty"`
-	// Name - READ-ONLY; The name of the resource
+	// Name - The name of the resource
 	Name *string `json:"name,omitempty"`
-	// Type - READ-ONLY; The type of the resource. Ex- Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts.
+	// Type - The type of the resource. Ex- Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts.
 	Type *string `json:"type,omitempty"`
 }
 
@@ -587,6 +608,15 @@ func (z Zone) MarshalJSON() ([]byte, error) {
 	}
 	if z.Location != nil {
 		objectMap["location"] = z.Location
+	}
+	if z.ID != nil {
+		objectMap["id"] = z.ID
+	}
+	if z.Name != nil {
+		objectMap["name"] = z.Name
+	}
+	if z.Type != nil {
+		objectMap["type"] = z.Type
 	}
 	return json.Marshal(objectMap)
 }
@@ -674,7 +704,7 @@ type ZoneListResult struct {
 	autorest.Response `json:"-"`
 	// Value - Information about the DNS zones.
 	Value *[]Zone `json:"value,omitempty"`
-	// NextLink - READ-ONLY; The continuation token for the next page of results.
+	// NextLink - The continuation token for the next page of results.
 	NextLink *string `json:"nextLink,omitempty"`
 }
 
@@ -817,11 +847,11 @@ func NewZoneListResultPage(getNextPage func(context.Context, ZoneListResult) (Zo
 
 // ZoneProperties represents the properties of the zone.
 type ZoneProperties struct {
-	// MaxNumberOfRecordSets - READ-ONLY; The maximum number of record sets that can be created in this DNS zone.  This is a read-only property and any attempt to set this value will be ignored.
+	// MaxNumberOfRecordSets - The maximum number of record sets that can be created in this DNS zone.  This is a read-only property and any attempt to set this value will be ignored.
 	MaxNumberOfRecordSets *int64 `json:"maxNumberOfRecordSets,omitempty"`
-	// NumberOfRecordSets - READ-ONLY; The current number of record sets in this DNS zone.  This is a read-only property and any attempt to set this value will be ignored.
+	// NumberOfRecordSets - The current number of record sets in this DNS zone.  This is a read-only property and any attempt to set this value will be ignored.
 	NumberOfRecordSets *int64 `json:"numberOfRecordSets,omitempty"`
-	// NameServers - READ-ONLY; The name servers for this DNS zone. This is a read-only property and any attempt to set this value will be ignored.
+	// NameServers - The name servers for this DNS zone. This is a read-only property and any attempt to set this value will be ignored.
 	NameServers *[]string `json:"nameServers,omitempty"`
 	// ZoneType - The type of this DNS zone (Public or Private). Possible values include: 'Public', 'Private'
 	ZoneType ZoneType `json:"zoneType,omitempty"`
@@ -840,7 +870,7 @@ type ZonesDeleteFuture struct {
 // If the operation has not completed it will return an error.
 func (future *ZonesDeleteFuture) Result(client ZonesClient) (ar autorest.Response, err error) {
 	var done bool
-	done, err = future.DoneWithContext(context.Background(), client)
+	done, err = future.Done(client)
 	if err != nil {
 		err = autorest.NewErrorWithError(err, "dns.ZonesDeleteFuture", "Result", future.Response(), "Polling failure")
 		return

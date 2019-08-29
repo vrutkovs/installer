@@ -110,9 +110,6 @@ func (client RecordSetsClient) CreateOrUpdatePreparer(ctx context.Context, resou
 		"api-version": APIVersion,
 	}
 
-	parameters.ID = nil
-	parameters.Name = nil
-	parameters.Type = nil
 	preparer := autorest.CreatePreparer(
 		autorest.AsContentType("application/json; charset=utf-8"),
 		autorest.AsPut(),
@@ -812,9 +809,6 @@ func (client RecordSetsClient) UpdatePreparer(ctx context.Context, resourceGroup
 		"api-version": APIVersion,
 	}
 
-	parameters.ID = nil
-	parameters.Name = nil
-	parameters.Type = nil
 	preparer := autorest.CreatePreparer(
 		autorest.AsContentType("application/json; charset=utf-8"),
 		autorest.AsPatch(),
