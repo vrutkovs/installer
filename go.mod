@@ -28,9 +28,9 @@ require (
 	github.com/go-openapi/jsonreference v0.19.3
 	github.com/go-openapi/spec v0.19.3
 	github.com/go-openapi/swag v0.19.5
-	github.com/gogo/protobuf v1.1.1
+	github.com/gogo/protobuf v1.2.0
 	github.com/golang/glog v0.0.0-20160126235308-23def4e6c14b
-	github.com/golang/mock v1.2.0
+	github.com/golang/mock v1.3.1
 	github.com/golang/protobuf v1.3.1
 	github.com/google/btree v1.0.0
 	github.com/google/gofuzz v0.0.0-20170612174753-24818f796faf
@@ -40,7 +40,7 @@ require (
 	github.com/gophercloud/utils v0.0.0-20190527093828-25f1b77b8c03
 	github.com/gregjones/httpcache v0.0.0-20180305231024-9cad4c3443a7
 	github.com/grpc-ecosystem/grpc-gateway v1.8.5
-	github.com/hashicorp/golang-lru v0.5.0
+	github.com/hashicorp/golang-lru v0.5.1
 	github.com/imdario/mergo v0.3.6
 	github.com/inconshreveable/mousetrap v1.0.0
 	github.com/jmespath/go-jmespath v0.0.0-20180206201540-c2b33e8439af
@@ -70,7 +70,7 @@ require (
 	github.com/pborman/uuid v0.0.0-20180906182336-adf5a7427709
 	github.com/petar/GoLLRB v0.0.0-20130427215148-53be0d36a84c
 	github.com/peterbourgon/diskv v2.0.1+incompatible
-	github.com/pkg/errors v0.8.0
+	github.com/pkg/errors v0.8.1
 	github.com/pkg/sftp v1.10.0
 	github.com/pmezard/go-difflib v1.0.0
 	github.com/shurcooL/httpfs v0.0.0-20171119174359-809beceb2371
@@ -80,29 +80,29 @@ require (
 	github.com/spf13/pflag v1.0.3
 	github.com/stretchr/testify v1.3.0
 	github.com/vincent-petithory/dataurl v0.0.0-20160330182126-9a301d65acbb
-	go.opencensus.io v0.19.3
+	go.opencensus.io v0.22.0
 	go4.org v0.0.0-20180809161055-417644f6feb5
-	golang.org/x/crypto v0.0.0-20181030102418-4d3f4d9ffa16
-	golang.org/x/net v0.0.0-20190404232315-eb5bcb51f2a3
-	golang.org/x/oauth2 v0.0.0-20181102170140-232e45548389
-	golang.org/x/sync v0.0.0-20190227155943-e225da77a7e6
-	golang.org/x/sys v0.0.0-20181031143558-9b800f95dbbc
-	golang.org/x/text v0.3.0
-	golang.org/x/time v0.0.0-20180412165947-fbb02b2291d2
-	google.golang.org/api v0.3.0
-	google.golang.org/appengine v1.3.0
-	google.golang.org/genproto v0.0.0-20190404172233-64821d5d2107
-	google.golang.org/grpc v1.19.1
+	golang.org/x/crypto v0.0.0-20190611184440-5c40567a22f8
+	golang.org/x/net v0.0.0-20190827160401-ba9fcec4b297
+	golang.org/x/oauth2 v0.0.0-20190604053449-0f29369cfe45
+	golang.org/x/sync v0.0.0-20190423024810-112230192c58
+	golang.org/x/sys v0.0.0-20190624142023-c5567b49c5d0
+	golang.org/x/text v0.3.2
+	golang.org/x/time v0.0.0-20190308202827-9d24e82272b4
+	google.golang.org/api v0.7.0
+	google.golang.org/appengine v1.6.1
+	google.golang.org/genproto v0.0.0-20190626174449-989357319d63
+	google.golang.org/grpc v1.21.1
 	gopkg.in/AlecAivazis/survey.v1 v1.8.7
 	gopkg.in/inf.v0 v0.9.1
 	gopkg.in/ini.v1 v1.41.0
-	gopkg.in/yaml.v2 v2.2.1
-	k8s.io/api v0.0.0-20181026184759-d1dc89ebaebe
-	k8s.io/apimachinery v0.0.0-20181022183627-f71dbbc36e12
-	k8s.io/client-go v9.0.0+incompatible
-	k8s.io/klog v0.1.0
+	gopkg.in/yaml.v2 v2.2.2
+	k8s.io/api v0.0.0-20190409021203-6e4e0e4f393b
+	k8s.io/apimachinery v0.0.0-20190404173353-6a84e37a896d
+	k8s.io/client-go v11.0.1-0.20190409021438-1a26190bd76a+incompatible
+	k8s.io/klog v0.3.0
 	k8s.io/kube-openapi v0.0.0-20190918143330-0270cf2f1c1d
-	k8s.io/utils v0.0.0-20181022192358-4c3feeb576b0
+	k8s.io/utils v0.0.0-20190506122338-8fab8cb257d5
 	sigs.k8s.io/controller-runtime v0.2.0-beta.2
 	sigs.k8s.io/yaml v1.1.0
 )
