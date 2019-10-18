@@ -4,6 +4,7 @@ go 1.13
 
 require (
 	cloud.google.com/go v0.45.1
+	cloud.google.com/go/bigtable v1.0.0 // indirect
 	contrib.go.opencensus.io/exporter/ocagent v0.4.11
 	github.com/Azure/azure-sdk-for-go v29.0.0+incompatible
 	github.com/Azure/go-autorest v12.1.0+incompatible
@@ -80,8 +81,10 @@ require (
 	github.com/sirupsen/logrus v1.2.0
 	github.com/spf13/cobra v0.0.3
 	github.com/spf13/pflag v1.0.3
+	github.com/stoewer/go-strcase v1.0.2 // indirect
 	github.com/stretchr/testify v1.3.0
 	github.com/terraform-providers/terraform-provider-aws v1.60.0 // indirect
+	github.com/terraform-providers/terraform-provider-google v1.20.0 // indirect
 	github.com/terraform-providers/terraform-provider-random v2.0.0+incompatible // indirect
 	github.com/vincent-petithory/dataurl v0.0.0-20160330182126-9a301d65acbb
 	go.opencensus.io v0.22.0

@@ -25,7 +25,6 @@ require (
 	github.com/satori/uuid v1.2.0 // indirect
 	github.com/stoewer/go-strcase v1.0.2 // indirect
 	github.com/terraform-providers/terraform-provider-azurerm v1.27.1
-	github.com/terraform-providers/terraform-provider-google v1.20.0
 	github.com/terraform-providers/terraform-provider-ignition v1.0.1
 	github.com/terraform-providers/terraform-provider-local v1.2.1
 	github.com/terraform-providers/terraform-provider-openstack v1.18.1-0.20190515162737-b1406b8e4894
@@ -38,5 +37,6 @@ require (
 replace (
 	github.com/mitchellh/packer => github.com/hashicorp/packer v1.3.5
 	github.com/terraform-providers/terraform-provider-aws/v2 => github.com/vrutkovs/terraform-provider-aws/v2 v2.10.0
+	github.com/terraform-providers/terraform-provider-google/v2 => github.com/vrutkovs/terraform-provider-google/v2 v2.8.0
 	github.com/terraform-providers/terraform-provider-ignition => github.com/abhinavdahiya/terraform-provider-ignition v1.0.2-0.20190513232748-18ce0b36dae1
 )
