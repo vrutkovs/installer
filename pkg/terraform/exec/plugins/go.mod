@@ -28,7 +28,6 @@ require (
 	github.com/terraform-providers/terraform-provider-ignition v1.0.1
 	github.com/terraform-providers/terraform-provider-local v1.2.1
 	github.com/terraform-providers/terraform-provider-openstack v1.18.1-0.20190515162737-b1406b8e4894
-	github.com/terraform-providers/terraform-provider-random v2.0.0+incompatible
 	google.golang.org/appengine v1.6.1 // indirect
 	k8s.io/apimachinery v0.0.0-20190326181733-7b3d41122501 // indirect
 	k8s.io/klog v0.2.0 // indirect
@@ -39,4 +38,5 @@ replace (
 	github.com/terraform-providers/terraform-provider-aws/v2 => github.com/vrutkovs/terraform-provider-aws/v2 v2.10.0
 	github.com/terraform-providers/terraform-provider-google/v2 => github.com/vrutkovs/terraform-provider-google/v2 v2.8.0
 	github.com/terraform-providers/terraform-provider-ignition => github.com/abhinavdahiya/terraform-provider-ignition v1.0.2-0.20190513232748-18ce0b36dae1
+	github.com/terraform-providers/terraform-provider-random/v2 => github.com/vrutkovs/terraform-provider-random/v2 v2.1.1
 )
