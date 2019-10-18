@@ -8,7 +8,6 @@ require (
 	github.com/Azure/azure-sdk-for-go v26.7.0+incompatible
 	github.com/Azure/go-autorest v11.9.0+incompatible
 	github.com/Unknwon/com v0.0.0-20181010210213-41959bdd855f
-	github.com/abhinavdahiya/terraform-provider-ignition v1.0.2-0.20190513232748-18ce0b36dae1
 	github.com/apparentlymart/go-cidr v1.0.0
 	github.com/aws/aws-sdk-go v1.19.26
 	github.com/beevik/etree v1.1.0
@@ -78,4 +77,4 @@ require (
 	k8s.io/klog v0.2.0
 )
 
-replace github.com/terraform-providers/terraform-provider-ignition 18ce0b36dae1c3d14e4303ff89dd2e658c380758 => github.com/abhinavdahiya/terraform-provider-ignition v1.0.2-0.20190513232748-18ce0b36dae1
+replace github.com/terraform-providers/terraform-provider-ignition => github.com/abhinavdahiya/terraform-provider-ignition v1.0.2-0.20190513232748-18ce0b36dae1
