@@ -2,7 +2,7 @@ package plugins
 
 import (
 	"github.com/hashicorp/terraform/plugin"
-	"github.com/terraform-providers/terraform-provider-aws/aws"
+	"github.com/terraform-providers/terraform-provider-aws/v2/aws"
 )
 
 func init() {

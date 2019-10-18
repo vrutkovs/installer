@@ -81,6 +81,7 @@ require (
 	github.com/spf13/cobra v0.0.3
 	github.com/spf13/pflag v1.0.3
 	github.com/stretchr/testify v1.3.0
+	github.com/terraform-providers/terraform-provider-aws v1.60.0 // indirect
 	github.com/terraform-providers/terraform-provider-random v2.0.0+incompatible // indirect
 	github.com/vincent-petithory/dataurl v0.0.0-20160330182126-9a301d65acbb
 	go.opencensus.io v0.22.0
