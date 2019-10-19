@@ -5,13 +5,13 @@ go 1.13
 require (
 	cloud.google.com/go v0.45.1
 	cloud.google.com/go/bigtable v1.0.0 // indirect
-	contrib.go.opencensus.io/exporter/ocagent v0.4.11
-	github.com/Azure/azure-sdk-for-go v29.0.0+incompatible
-	github.com/Azure/go-autorest v12.1.0+incompatible
+	contrib.go.opencensus.io/exporter/ocagent v0.5.0
+	git.apache.org/thrift.git v0.12.0 // indirect
+	github.com/Azure/azure-sdk-for-go v33.2.0+incompatible
+	github.com/Azure/go-autorest v13.0.0+incompatible
 	github.com/Azure/go-autorest/autorest v0.9.2
 	github.com/Azure/go-autorest/autorest/azure/auth v0.4.0
 	github.com/Azure/go-autorest/autorest/to v0.3.0
-	github.com/Azure/go-autorest/autorest/validation v0.2.0 // indirect
 	github.com/BurntSushi/toml v0.3.1
 	github.com/PuerkitoBio/purell v1.1.1
 	github.com/PuerkitoBio/urlesc v0.0.0-20170810143723-de5bf2ad4578
@@ -92,6 +92,7 @@ require (
 	github.com/stoewer/go-strcase v1.0.2 // indirect
 	github.com/stretchr/testify v1.4.0
 	github.com/terraform-providers/terraform-provider-aws v1.60.0 // indirect
+	github.com/terraform-providers/terraform-provider-azurerm v1.35.0 // indirect
 	github.com/terraform-providers/terraform-provider-local v1.4.0 // indirect
 	github.com/vincent-petithory/dataurl v0.0.0-20160330182126-9a301d65acbb
 	github.com/vrutkovs/terraform-provider-aws/v3 v3.0.0 // indirect
