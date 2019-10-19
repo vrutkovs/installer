@@ -18,8 +18,6 @@ require (
 	github.com/dustinkirkland/golang-petname v0.0.0-20190613200456-11339a705ed2 // indirect
 	github.com/ghodss/yaml v1.0.0
 	github.com/golang/mock v1.3.1
-	github.com/golangci/go-tools v0.0.0-20190318055746-e32c54105b7c // indirect
-	github.com/golangci/gosec v0.0.0-20190211064107-66fb7fc33547 // indirect
 	github.com/gophercloud/gophercloud v0.4.1-0.20190930034851-863d5406e68f
 	github.com/gophercloud/utils v0.0.0-20190527093828-25f1b77b8c03
 	github.com/hashicorp/terraform v0.12.12 // indirect
@@ -40,14 +38,11 @@ require (
 	github.com/pborman/uuid v1.2.0
 	github.com/pkg/errors v0.8.1
 	github.com/pkg/sftp v1.10.0
-	github.com/ryanuber/go-glob v1.0.0 // indirect
-	github.com/shurcooL/vfsgen v0.0.0-20181202132449-6a9ea43bcacd // indirect
 	github.com/sirupsen/logrus v1.4.2
 	github.com/spf13/cobra v0.0.5
 	github.com/stretchr/testify v1.4.0
 	github.com/terraform-providers/terraform-provider-azurerm v1.35.0 // indirect
 	github.com/terraform-providers/terraform-provider-local v1.4.0 // indirect
-	github.com/ugorji/go v1.1.7 // indirect
 	github.com/vincent-petithory/dataurl v0.0.0-20160330182126-9a301d65acbb
 	golang.org/x/crypto v0.0.0-20190911031432-227b76d455e7
 	golang.org/x/oauth2 v0.0.0-20190604053449-0f29369cfe45
