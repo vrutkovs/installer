@@ -27,6 +27,7 @@ require (
 	github.com/davecgh/go-spew v1.1.1
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/dimchansky/utfbom v1.1.0
+	github.com/dmacvicar/terraform-provider-libvirt v0.6.0 // indirect
 	github.com/dustinkirkland/golang-petname v0.0.0-20190613200456-11339a705ed2 // indirect
 	github.com/emicklei/go-restful v2.10.0+incompatible
 	github.com/ghodss/yaml v1.0.0
@@ -55,7 +56,7 @@ require (
 	github.com/kballard/go-shellquote v0.0.0-20180428030007-95032a82bc51
 	github.com/konsorten/go-windows-terminal-sequences v1.0.1
 	github.com/kr/fs v0.1.0
-	github.com/libvirt/libvirt-go v4.8.0+incompatible
+	github.com/libvirt/libvirt-go v5.0.0+incompatible
 	github.com/mailru/easyjson v0.7.0
 	github.com/mattn/go-colorable v0.1.2
 	github.com/mattn/go-isatty v0.0.8
@@ -67,6 +68,7 @@ require (
 	github.com/modern-go/reflect2 v1.0.1
 	github.com/opencontainers/go-digest v1.0.0-rc1
 	github.com/opencontainers/image-spec v1.0.1
+	github.com/openshift-metal3/terraform-provider-ironic v0.1.7 // indirect
 	github.com/openshift/api v3.9.1-0.20190806225813-d2972510af76+incompatible
 	github.com/openshift/client-go v0.0.0-20190806162413-e9678e3b850d
 	github.com/openshift/cloud-credential-operator v0.0.0-20190905120421-44ed18ef8496
@@ -76,7 +78,7 @@ require (
 	github.com/openshift/cluster-api-provider-libvirt v0.2.1-0.20190613141010-ecea5317a4ab
 	github.com/openshift/library-go v0.0.0-20190129125304-4b9f6ceb6598
 	github.com/openshift/machine-config-operator v3.11.0+incompatible
-	github.com/pborman/uuid v0.0.0-20180906182336-adf5a7427709
+	github.com/pborman/uuid v1.2.0
 	github.com/petar/GoLLRB v0.0.0-20130427215148-53be0d36a84c
 	github.com/peterbourgon/diskv v2.0.1+incompatible
 	github.com/pkg/errors v0.8.1
@@ -90,10 +92,11 @@ require (
 	github.com/stoewer/go-strcase v1.0.2 // indirect
 	github.com/stretchr/testify v1.4.0
 	github.com/terraform-providers/terraform-provider-aws v1.60.0 // indirect
+	github.com/terraform-providers/terraform-provider-local v1.4.0 // indirect
 	github.com/vincent-petithory/dataurl v0.0.0-20160330182126-9a301d65acbb
 	github.com/vrutkovs/terraform-provider-aws/v3 v3.0.0 // indirect
 	go.opencensus.io v0.22.0
-	go4.org v0.0.0-20180809161055-417644f6feb5
+	go4.org v0.0.0-20181109185143-00e24f1b2599
 	golang.org/x/crypto v0.0.0-20190911031432-227b76d455e7
 	golang.org/x/net v0.0.0-20191009170851-d66e71096ffb
 	golang.org/x/oauth2 v0.0.0-20190604053449-0f29369cfe45
@@ -104,7 +107,7 @@ require (
 	google.golang.org/api v0.9.0
 	google.golang.org/appengine v1.6.1
 	google.golang.org/genproto v0.0.0-20190819201941-24fa4b261c55
-	google.golang.org/grpc v1.21.1
+	google.golang.org/grpc v1.23.0
 	gopkg.in/AlecAivazis/survey.v1 v1.8.7
 	gopkg.in/inf.v0 v0.9.1
 	gopkg.in/ini.v1 v1.42.0
