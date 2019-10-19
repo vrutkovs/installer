@@ -3,31 +3,35 @@ module github.com/openshift/installer
 go 1.12
 
 require (
+	cloud.google.com/go/bigtable v1.0.0 // indirect
+	cloud.google.com/go/pubsub v1.0.1 // indirect
 	github.com/apparentlymart/go-cidr v1.0.1
 	github.com/awalterschulze/gographviz v0.0.0-20170410065617-c84395e536e1
 	github.com/aws/aws-sdk-go v1.25.3
 	github.com/containers/image v3.0.2+incompatible
 	github.com/coreos/ignition v0.33.0
 	github.com/coreos/ignition/v2 v2.0.1
-	github.com/dustin/go-humanize v1.0.0 // indirect
+	github.com/dmacvicar/terraform-provider-libvirt v0.6.0
 	github.com/dustinkirkland/golang-petname v0.0.0-20190613200456-11339a705ed2 // indirect
 	github.com/ghodss/yaml v1.0.0
 	github.com/golang/mock v1.3.1
 	github.com/gophercloud/gophercloud v0.4.1-0.20190930034851-863d5406e68f
 	github.com/gophercloud/utils v0.0.0-20190527093828-25f1b77b8c03
-	github.com/gregjones/httpcache v0.0.0-20180305231024-9cad4c3443a7 // indirect
+	github.com/hashicorp/go-plugin v1.0.1-0.20190610192547-a1bc61569a26
+	github.com/hashicorp/logutils v1.0.0
+	github.com/hashicorp/terraform v0.12.12
 	github.com/kr/fs v0.1.0 // indirect
 	github.com/libvirt/libvirt-go v5.0.0+incompatible
 	github.com/metal3-io/baremetal-operator v0.0.0-00010101000000-000000000000
 	github.com/metal3-io/cluster-api-provider-baremetal v0.0.0-20191010235856-134c3b78ec63
+	github.com/mitchellh/cli v1.0.0
+	github.com/openshift-metal3/terraform-provider-ironic v0.1.7
 	github.com/openshift/api v3.9.1-0.20191018132714-d0b31d707c46+incompatible
 	github.com/openshift/client-go v0.0.0-20191001081553-3b0e988f8cb0
 	github.com/openshift/cloud-credential-operator v0.0.0-20190905120421-44ed18ef8496
 	github.com/openshift/cluster-api v0.0.0-20191004085540-83f32d3e7070
 	github.com/openshift/cluster-api-provider-gcp v0.0.1-0.20190826205919-0cd5daa07e0d
 	github.com/openshift/cluster-api-provider-libvirt v0.2.1-0.20190613141010-ecea5317a4ab
-	github.com/openshift/installer/pkg/terraform/exec v0.0.0-00010101000000-000000000000
-	github.com/openshift/installer/pkg/terraform/exec/plugins v0.0.0-00010101000000-000000000000
 	github.com/openshift/library-go v0.0.0-20191003152030-97c62d8a2901
 	github.com/openshift/machine-config-operator v0.0.0-00010101000000-000000000000
 	github.com/pborman/uuid v1.2.0
@@ -38,7 +42,14 @@ require (
 	github.com/sirupsen/logrus v1.4.2
 	github.com/spf13/cobra v0.0.5
 	github.com/stretchr/testify v1.4.0
+	github.com/terraform-providers/terraform-provider-google v1.20.0 // indirect
+	github.com/terraform-providers/terraform-provider-google/v2 v2.8.0
+	github.com/terraform-providers/terraform-provider-ignition v1.0.1
+	github.com/terraform-providers/terraform-provider-local v1.2.1
+	github.com/terraform-providers/terraform-provider-openstack v1.18.1-0.20190515162737-b1406b8e4894
+	github.com/terraform-providers/terraform-provider-random/v2 v2.1.1
 	github.com/vincent-petithory/dataurl v0.0.0-20160330182126-9a301d65acbb
+	github.com/vrutkovs/terraform-provider-aws/v3 v3.0.0
 	golang.org/x/crypto v0.0.0-20190911031432-227b76d455e7
 	golang.org/x/oauth2 v0.0.0-20190604053449-0f29369cfe45
 	golang.org/x/sys v0.0.0-20190911201528-7ad0cfa0b7b5
@@ -58,8 +69,6 @@ require (
 replace (
 	github.com/metal3-io/baremetal-operator => github.com/openshift/baremetal-operator v0.0.0-20191001171423-cd2cdd14084a
 	github.com/mitchellh/packer => github.com/hashicorp/packer v1.3.5
-	github.com/openshift/installer/pkg/terraform/exec => ./pkg/terraform/exec
-	github.com/openshift/installer/pkg/terraform/exec/plugins => ./pkg/terraform/exec/plugins
 	github.com/openshift/machine-config-operator => github.com/vrutkovs/machine-config-operator v0.0.0-20191019120328-fbe213551387
 	github.com/terraform-providers/terraform-provider-google/v2 => github.com/vrutkovs/terraform-provider-google/v2 v2.8.0
 	github.com/terraform-providers/terraform-provider-ignition => github.com/vrutkovs/terraform-provider-ignition v1.0.2-0.20190819094334-ac54201ee306
