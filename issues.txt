@@ -8,7 +8,7 @@
 # github.com/hashicorp/terraform/backend/remote-state/azure
 ../../../../pkg/mod/github.com/hashicorp/terraform@v0.12.12/backend/remote-state/azure/arm_client.go:83:46: not enough arguments in call to armConfig.GetAuthorizationToken
 	have (*adal.OAuthConfig, string)
-	want (autorest.Sender, *authentication.OAuthConfig, string)
+	want (autorest.Sender, *adal.OAuthConfig, string)
 note: module requires Go 1.13
 # github.com/openshift/installer/pkg/terraform/exec/plugins/azureprivatedns
 pkg/terraform/exec/plugins/azureprivatedns/client.go:40:18: undefined: "github.com/terraform-providers/terraform-provider-azurerm/azurerm/helpers/azure".BuildSender
