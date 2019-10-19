@@ -5,13 +5,16 @@ go 1.12
 require (
 	cloud.google.com/go/bigtable v1.0.0 // indirect
 	cloud.google.com/go/pubsub v1.0.1 // indirect
-	github.com/Azure/azure-sdk-for-go v33.2.0+incompatible
+	github.com/Azure/azure-sdk-for-go v31.2.0+incompatible
+	github.com/Azure/go-autorest v13.0.0+incompatible // indirect
 	github.com/Azure/go-autorest/autorest v0.9.2
 	github.com/Azure/go-autorest/autorest/azure/auth v0.4.0
 	github.com/Azure/go-autorest/autorest/to v0.3.0
+	github.com/Azure/go-autorest/autorest/validation v0.2.0 // indirect
 	github.com/apparentlymart/go-cidr v1.0.1
 	github.com/awalterschulze/gographviz v0.0.0-20170410065617-c84395e536e1
 	github.com/aws/aws-sdk-go v1.25.3
+	github.com/btubbs/datetime v0.1.0 // indirect
 	github.com/containers/image v3.0.2+incompatible
 	github.com/coreos/ignition v0.33.0
 	github.com/coreos/ignition/v2 v2.0.1
@@ -41,12 +44,14 @@ require (
 	github.com/pkg/errors v0.8.1
 	github.com/pkg/sftp v1.10.0
 	github.com/ryanuber/go-glob v1.0.0 // indirect
+	github.com/shopspring/decimal v0.0.0-20180709203117-cd690d0c9e24 // indirect
 	github.com/shurcooL/httpfs v0.0.0-20190707220628-8d4bc4ba7749 // indirect
 	github.com/shurcooL/vfsgen v0.0.0-20181202132449-6a9ea43bcacd // indirect
 	github.com/sirupsen/logrus v1.4.2
 	github.com/spf13/cobra v0.0.5
 	github.com/stretchr/testify v1.4.0
-	github.com/terraform-providers/terraform-provider-azurerm v1.35.0 // indirect
+	github.com/terraform-providers/terraform-provider-azuread v0.5.1 // indirect
+	github.com/terraform-providers/terraform-provider-azurerm v1.33.1 // indirect
 	github.com/terraform-providers/terraform-provider-local v1.4.0 // indirect
 	github.com/vincent-petithory/dataurl v0.0.0-20160330182126-9a301d65acbb
 	golang.org/x/crypto v0.0.0-20190911031432-227b76d455e7
