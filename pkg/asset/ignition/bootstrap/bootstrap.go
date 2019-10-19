@@ -273,11 +273,13 @@ func (a *Bootstrap) addStorageFiles(base string, uri string, templateData *boots
 
 	var mode int
 	appendToFile := false
+	overwrite := false
 	if path.Base(path.Dir(uri)) == "bin" {
 		mode = 0555
 	} else if filename == "motd" {
 		mode = 0644
 		appendToFile = true
+		overwrite = true
 	} else {
 		mode = 0600
 	}
@@ -285,6 +287,7 @@ func (a *Bootstrap) addStorageFiles(base string, uri string, templateData *boots
 	if appendToFile {
 		ign.Append = append(ign.Append, ign.Contents)
 	}
+	ign.Overwrite = &overwrite
 	a.Config.Storage.Files = append(a.Config.Storage.Files, ign)
 
 	return nil
