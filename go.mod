@@ -8,6 +8,10 @@ require (
 	contrib.go.opencensus.io/exporter/ocagent v0.4.11
 	github.com/Azure/azure-sdk-for-go v29.0.0+incompatible
 	github.com/Azure/go-autorest v12.1.0+incompatible
+	github.com/Azure/go-autorest/autorest v0.9.2
+	github.com/Azure/go-autorest/autorest/azure/auth v0.4.0
+	github.com/Azure/go-autorest/autorest/to v0.3.0
+	github.com/Azure/go-autorest/autorest/validation v0.2.0 // indirect
 	github.com/BurntSushi/toml v0.3.1
 	github.com/PuerkitoBio/purell v1.1.1
 	github.com/PuerkitoBio/urlesc v0.0.0-20170810143723-de5bf2ad4578
@@ -18,7 +22,7 @@ require (
 	github.com/census-instrumentation/opencensus-proto v0.2.0
 	github.com/containers/image v2.0.0+incompatible
 	github.com/coreos/go-semver v0.2.0
-	github.com/coreos/go-systemd v0.0.0-20181031085051-9002847aa142
+	github.com/coreos/go-systemd v0.0.0-20190321100706-95778dfbb74e
 	github.com/coreos/ignition v0.26.0
 	github.com/davecgh/go-spew v1.1.1
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
@@ -30,7 +34,7 @@ require (
 	github.com/go-openapi/jsonreference v0.19.3
 	github.com/go-openapi/spec v0.19.3
 	github.com/go-openapi/swag v0.19.5
-	github.com/gogo/protobuf v1.2.0
+	github.com/gogo/protobuf v1.2.1
 	github.com/golang/glog v0.0.0-20160126235308-23def4e6c14b
 	github.com/golang/mock v1.3.1
 	github.com/golang/protobuf v1.3.2
@@ -41,7 +45,7 @@ require (
 	github.com/gophercloud/gophercloud v0.4.1-0.20190930034851-863d5406e68f
 	github.com/gophercloud/utils v0.0.0-20190527093828-25f1b77b8c03
 	github.com/gregjones/httpcache v0.0.0-20180305231024-9cad4c3443a7
-	github.com/grpc-ecosystem/grpc-gateway v1.8.5
+	github.com/grpc-ecosystem/grpc-gateway v1.9.0
 	github.com/hashicorp/golang-lru v0.5.1
 	github.com/hashicorp/terraform v0.12.12 // indirect
 	github.com/imdario/mergo v0.3.6
@@ -53,8 +57,10 @@ require (
 	github.com/kr/fs v0.1.0
 	github.com/libvirt/libvirt-go v4.8.0+incompatible
 	github.com/mailru/easyjson v0.7.0
-	github.com/mattn/go-colorable v0.1.1
-	github.com/mattn/go-isatty v0.0.5
+	github.com/mattn/go-colorable v0.1.2
+	github.com/mattn/go-isatty v0.0.8
+	github.com/metal3-io/baremetal-operator v0.0.0-00010101000000-000000000000
+	github.com/metal3-io/cluster-api-provider-baremetal v0.0.0-20191010235856-134c3b78ec63
 	github.com/mgutz/ansi v0.0.0-20170206155736-9520e82c474b
 	github.com/mitchellh/go-homedir v1.1.0
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd
@@ -78,20 +84,21 @@ require (
 	github.com/pmezard/go-difflib v1.0.0
 	github.com/shurcooL/httpfs v0.0.0-20171119174359-809beceb2371
 	github.com/shurcooL/vfsgen v0.0.0-20181020040650-a97a25d856ca
-	github.com/sirupsen/logrus v1.2.0
-	github.com/spf13/cobra v0.0.3
-	github.com/spf13/pflag v1.0.3
+	github.com/sirupsen/logrus v1.4.2
+	github.com/spf13/cobra v0.0.5
+	github.com/spf13/pflag v1.0.5
 	github.com/stoewer/go-strcase v1.0.2 // indirect
-	github.com/stretchr/testify v1.3.0
+	github.com/stretchr/testify v1.4.0
 	github.com/terraform-providers/terraform-provider-aws v1.60.0 // indirect
 	github.com/vincent-petithory/dataurl v0.0.0-20160330182126-9a301d65acbb
+	github.com/vrutkovs/terraform-provider-aws/v3 v3.0.0 // indirect
 	go.opencensus.io v0.22.0
 	go4.org v0.0.0-20180809161055-417644f6feb5
-	golang.org/x/crypto v0.0.0-20190701094942-4def268fd1a4
+	golang.org/x/crypto v0.0.0-20190911031432-227b76d455e7
 	golang.org/x/net v0.0.0-20191009170851-d66e71096ffb
 	golang.org/x/oauth2 v0.0.0-20190604053449-0f29369cfe45
 	golang.org/x/sync v0.0.0-20190423024810-112230192c58
-	golang.org/x/sys v0.0.0-20190804053845-51ab0e2deafa
+	golang.org/x/sys v0.0.0-20190911201528-7ad0cfa0b7b5
 	golang.org/x/text v0.3.2
 	golang.org/x/time v0.0.0-20190308202827-9d24e82272b4
 	google.golang.org/api v0.9.0
@@ -108,6 +115,9 @@ require (
 	k8s.io/klog v0.3.0
 	k8s.io/kube-openapi v0.0.0-20190918143330-0270cf2f1c1d
 	k8s.io/utils v0.0.0-20190506122338-8fab8cb257d5
+	sigs.k8s.io/cluster-api-provider-aws v0.0.0-00010101000000-000000000000
+	sigs.k8s.io/cluster-api-provider-azure v0.0.0-00010101000000-000000000000
+	sigs.k8s.io/cluster-api-provider-openstack v0.0.0-00010101000000-000000000000
 	sigs.k8s.io/controller-runtime v0.2.0-beta.2
 	sigs.k8s.io/yaml v1.1.0
 )
