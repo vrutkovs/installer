@@ -3,14 +3,15 @@ module github.com/openshift/installer
 go 1.12
 
 require (
-	cloud.google.com/go/bigtable v1.0.0 // indirect
-	cloud.google.com/go/pubsub v1.0.1 // indirect
+	github.com/Azure/go-autorest v11.1.2+incompatible // indirect
 	github.com/apparentlymart/go-cidr v1.0.1
+	github.com/appscode/jsonpatch v0.0.0-20190108182946-7c0e3b262f30 // indirect
 	github.com/awalterschulze/gographviz v0.0.0-20170410065617-c84395e536e1
 	github.com/aws/aws-sdk-go v1.25.3
 	github.com/containers/image v3.0.2+incompatible
 	github.com/coreos/ignition v0.33.0
 	github.com/coreos/ignition/v2 v2.0.1
+	github.com/dustin/go-humanize v1.0.0 // indirect
 	github.com/dustinkirkland/golang-petname v0.0.0-20190613200456-11339a705ed2 // indirect
 	github.com/ghodss/yaml v1.0.0
 	github.com/golang/mock v1.3.1
@@ -18,7 +19,6 @@ require (
 	github.com/golangci/gosec v0.0.0-20190211064107-66fb7fc33547 // indirect
 	github.com/gophercloud/gophercloud v0.4.1-0.20190930034851-863d5406e68f
 	github.com/gophercloud/utils v0.0.0-20190527093828-25f1b77b8c03
-	github.com/hashicorp/terraform v0.12.12 // indirect
 	github.com/kr/fs v0.1.0 // indirect
 	github.com/libvirt/libvirt-go v5.0.0+incompatible
 	github.com/metal3-io/baremetal-operator v0.0.0-00010101000000-000000000000
@@ -42,7 +42,6 @@ require (
 	github.com/sirupsen/logrus v1.4.2
 	github.com/spf13/cobra v0.0.5
 	github.com/stretchr/testify v1.4.0
-	github.com/terraform-providers/terraform-provider-local v1.4.0 // indirect
 	github.com/vincent-petithory/dataurl v0.0.0-20160330182126-9a301d65acbb
 	golang.org/x/crypto v0.0.0-20190911031432-227b76d455e7
 	golang.org/x/oauth2 v0.0.0-20190604053449-0f29369cfe45
@@ -57,7 +56,7 @@ require (
 	k8s.io/utils v0.0.0-20191010214722-8d271d903fe4
 	sigs.k8s.io/cluster-api-provider-aws v0.0.0-00010101000000-000000000000
 	sigs.k8s.io/cluster-api-provider-openstack v0.0.0-00010101000000-000000000000
-	sigs.k8s.io/controller-runtime v0.2.0-beta.2 // indirect
+	sigs.k8s.io/controller-runtime v0.3.0 // indirect
 )
 
 replace (
