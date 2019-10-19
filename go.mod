@@ -18,6 +18,8 @@ require (
 	github.com/dustinkirkland/golang-petname v0.0.0-20190613200456-11339a705ed2 // indirect
 	github.com/ghodss/yaml v1.0.0
 	github.com/golang/mock v1.3.1
+	github.com/golangci/go-tools v0.0.0-20190318055746-e32c54105b7c // indirect
+	github.com/golangci/gosec v0.0.0-20190211064107-66fb7fc33547 // indirect
 	github.com/gophercloud/gophercloud v0.4.1-0.20190930034851-863d5406e68f
 	github.com/gophercloud/utils v0.0.0-20190527093828-25f1b77b8c03
 	github.com/hashicorp/terraform v0.12.12 // indirect
@@ -34,10 +36,13 @@ require (
 	github.com/openshift/installer/pkg/terraform/exec v0.0.0-00010101000000-000000000000
 	github.com/openshift/installer/pkg/terraform/exec/plugins v0.0.0-00010101000000-000000000000
 	github.com/openshift/library-go v0.0.0-20191003152030-97c62d8a2901
-	github.com/openshift/machine-config-operator v3.11.0+incompatible
+	github.com/openshift/machine-config-operator v0.0.0-00010101000000-000000000000
 	github.com/pborman/uuid v1.2.0
 	github.com/pkg/errors v0.8.1
 	github.com/pkg/sftp v1.10.0
+	github.com/ryanuber/go-glob v1.0.0 // indirect
+	github.com/shurcooL/httpfs v0.0.0-20190707220628-8d4bc4ba7749 // indirect
+	github.com/shurcooL/vfsgen v0.0.0-20181202132449-6a9ea43bcacd // indirect
 	github.com/sirupsen/logrus v1.4.2
 	github.com/spf13/cobra v0.0.5
 	github.com/stretchr/testify v1.4.0
