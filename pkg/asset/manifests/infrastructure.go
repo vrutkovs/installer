@@ -14,7 +14,6 @@ import (
 
 	gcpmanifests "github.com/openshift/installer/pkg/asset/manifests/gcp"
 	"github.com/openshift/installer/pkg/types/aws"
-	"github.com/openshift/installer/pkg/types/azure"
 	"github.com/openshift/installer/pkg/types/baremetal"
 	"github.com/openshift/installer/pkg/types/gcp"
 	"github.com/openshift/installer/pkg/types/libvirt"
@@ -84,11 +83,6 @@ func (i *Infrastructure) Generate(dependencies asset.Parents) error {
 		config.Status.PlatformStatus.Type = configv1.AWSPlatformType
 		config.Status.PlatformStatus.AWS = &configv1.AWSPlatformStatus{
 			Region: installConfig.Config.Platform.AWS.Region,
-		}
-	case azure.Name:
-		config.Status.PlatformStatus.Type = configv1.AzurePlatformType
-		config.Status.PlatformStatus.Azure = &configv1.AzurePlatformStatus{
-			ResourceGroupName: fmt.Sprintf("%s-rg", clusterID.InfraID),
 		}
 	case baremetal.Name:
 		config.Status.PlatformStatus.Type = configv1.BareMetalPlatformType
