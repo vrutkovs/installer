@@ -5,6 +5,12 @@ go 1.12
 require (
 	cloud.google.com/go/bigtable v1.0.0 // indirect
 	cloud.google.com/go/pubsub v1.0.1 // indirect
+	github.com/Azure/azure-sdk-for-go v32.5.0+incompatible // indirect
+	github.com/Azure/go-autorest/autorest/adal v0.6.0 // indirect
+	github.com/Azure/go-autorest/autorest/azure/cli v0.2.0 // indirect
+	github.com/Azure/go-autorest/autorest/to v0.3.0 // indirect
+	github.com/Azure/go-autorest/autorest/validation v0.2.0 // indirect
+
 	github.com/apparentlymart/go-cidr v1.0.1
 	github.com/awalterschulze/gographviz v0.0.0-20170410065617-c84395e536e1
 	github.com/aws/aws-sdk-go v1.25.3
@@ -67,6 +73,7 @@ require (
 )
 
 replace (
+	github.com/Azure/go-autorest v10.15.4+incompatible => github.com/Azure/go-autorest/autorest v0.9.2
 	github.com/metal3-io/baremetal-operator => github.com/openshift/baremetal-operator v0.0.0-20191001171423-cd2cdd14084a
 	github.com/mitchellh/packer => github.com/hashicorp/packer v1.3.5
 	github.com/openshift/machine-config-operator => github.com/vrutkovs/machine-config-operator v0.0.0-20191019120328-fbe213551387
