@@ -84,8 +84,6 @@ require (
 	github.com/stoewer/go-strcase v1.0.2 // indirect
 	github.com/stretchr/testify v1.3.0
 	github.com/terraform-providers/terraform-provider-aws v1.60.0 // indirect
-	github.com/terraform-providers/terraform-provider-google v1.20.0 // indirect
-	github.com/terraform-providers/terraform-provider-random v2.0.0+incompatible // indirect
 	github.com/vincent-petithory/dataurl v0.0.0-20160330182126-9a301d65acbb
 	go.opencensus.io v0.22.0
 	go4.org v0.0.0-20180809161055-417644f6feb5

@@ -8,26 +8,22 @@ require (
 	github.com/Azure/azure-sdk-for-go v26.7.0+incompatible
 	github.com/Azure/go-autorest v11.9.0+incompatible
 	github.com/Unknwon/com v0.0.0-20181010210213-41959bdd855f // indirect
-	github.com/aws/aws-sdk-go v1.19.26 // indirect
-	github.com/beevik/etree v1.1.0 // indirect
-	github.com/coreos/go-systemd v0.0.0-20190321100706-95778dfbb74e // indirect
 	github.com/dimchansky/utfbom v1.1.0 // indirect
 	github.com/dmacvicar/terraform-provider-libvirt v0.6.0
-	github.com/dustinkirkland/golang-petname v0.0.0-20170921220637-d3c2ba80e75e // indirect
-	github.com/gogo/protobuf v1.2.1 // indirect
 	github.com/google/uuid v1.1.1 // indirect
 	github.com/hashicorp/go-azure-helpers v0.4.1
-	github.com/hashicorp/go-cleanhttp v0.5.1 // indirect
 	github.com/hashicorp/terraform v0.12.0
 	github.com/libvirt/libvirt-go-xml v5.1.0+incompatible // indirect
 	github.com/mitchellh/packer v1.3.5 // indirect
 	github.com/openshift-metal3/terraform-provider-ironic v0.1.7
 	github.com/satori/uuid v1.2.0 // indirect
-	github.com/stoewer/go-strcase v1.0.2 // indirect
 	github.com/terraform-providers/terraform-provider-azurerm v1.27.1
+	github.com/terraform-providers/terraform-provider-google/v2 v2.8.0
 	github.com/terraform-providers/terraform-provider-ignition v1.0.1
 	github.com/terraform-providers/terraform-provider-local v1.2.1
 	github.com/terraform-providers/terraform-provider-openstack v1.18.1-0.20190515162737-b1406b8e4894
+	github.com/terraform-providers/terraform-provider-random/v2 v2.1.1
+	github.com/vrutkovs/terraform-provider-aws/v3 v3.0.0
 	google.golang.org/appengine v1.6.1 // indirect
 	k8s.io/apimachinery v0.0.0-20190326181733-7b3d41122501 // indirect
 	k8s.io/klog v0.2.0 // indirect
@@ -35,7 +31,6 @@ require (
 
 replace (
 	github.com/mitchellh/packer => github.com/hashicorp/packer v1.3.5
-	github.com/terraform-providers/terraform-provider-aws/v2 => github.com/vrutkovs/terraform-provider-aws/v2 v2.10.0
 	github.com/terraform-providers/terraform-provider-google/v2 => github.com/vrutkovs/terraform-provider-google/v2 v2.8.0
 	github.com/terraform-providers/terraform-provider-ignition => github.com/abhinavdahiya/terraform-provider-ignition v1.0.2-0.20190513232748-18ce0b36dae1
 	github.com/terraform-providers/terraform-provider-random/v2 => github.com/vrutkovs/terraform-provider-random/v2 v2.1.1
