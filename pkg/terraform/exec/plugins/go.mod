@@ -18,6 +18,7 @@ require (
 	github.com/openshift-metal3/terraform-provider-ironic v0.1.7
 	github.com/satori/uuid v1.2.0 // indirect
 	github.com/terraform-providers/terraform-provider-azurerm v1.27.1
+	github.com/terraform-providers/terraform-provider-google v1.20.0 // indirect
 	github.com/terraform-providers/terraform-provider-google/v2 v2.8.0
 	github.com/terraform-providers/terraform-provider-ignition v1.0.1
 	github.com/terraform-providers/terraform-provider-local v1.2.1
