@@ -73,7 +73,7 @@ replace (
 	github.com/openshift/installer/pkg/terraform/exec/plugins => ./pkg/terraform/exec/plugins
 	github.com/openshift/machine-config-operator => github.com/vrutkovs/machine-config-operator v0.0.0-20191019120328-fbe213551387
 	github.com/terraform-providers/terraform-provider-google/v2 => github.com/vrutkovs/terraform-provider-google/v2 v2.8.0
-	github.com/terraform-providers/terraform-provider-ignition => github.com/abhinavdahiya/terraform-provider-ignition v1.0.2-0.20190513232748-18ce0b36dae1
+	github.com/terraform-providers/terraform-provider-ignition => github.com/vrutkovs/terraform-provider-ignition v1.0.2-0.20190819094334-ac54201ee306
 	github.com/terraform-providers/terraform-provider-random/v2 => github.com/vrutkovs/terraform-provider-random/v2 v2.1.1
 	sigs.k8s.io/cluster-api-provider-aws => github.com/openshift/cluster-api-provider-aws v0.2.1-0.20190619152724-cf06d47b6cee
 	sigs.k8s.io/cluster-api-provider-azure => github.com/openshift/cluster-api-provider-azure v0.1.0-alpha.3.0.20190718103506-6a50a8c59d8a
