@@ -124,9 +124,9 @@
         }
     },
     "oscontainer": {
-        "digest": "sha256:30857847ade065a57e02c9297cafdd6b2a95d086d0d99480980a3a6eaba2a95b",
-        "image": "quay.io/openshift-release-dev/ocp-v4.0-art-dev"
+        "digest": "sha256:a8eab7b90a9770ad908cecfd040ee6be0325f34dbb143ed2b558d758e59447bc",
+        "image": "quay.io/vrutkovs/oscontainer"
     },
-    "ostree-commit": "da67d201b394913ffdd959141bb93ca3a0f31f7b19e4007a02bef6bc7d9392ef",
-    "ostree-version": "43.80.20191002.1"
+    "ostree-commit": "9e208f768affb7c8fdf1bb739d96ce8deb4f3639ce4b41415a0ffcfe81361c17",
+    "ostree-version": "30.20191020.dev.0"
 }
