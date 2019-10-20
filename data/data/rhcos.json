@@ -37,7 +37,7 @@
             "hvm": "ami-0ee6a625ee9e78337"
         },
         "us-east-1": {
-            "hvm": "ami-0137ef4b08685e0d7"
+            "hvm": "ami-0b6e359e692011698"
         },
         "us-east-2": {
             "hvm": "ami-0edd5d840c0c9d013"
@@ -127,6 +127,6 @@
         "digest": "sha256:a8eab7b90a9770ad908cecfd040ee6be0325f34dbb143ed2b558d758e59447bc",
         "image": "quay.io/vrutkovs/oscontainer"
     },
-    "ostree-commit": "9e208f768affb7c8fdf1bb739d96ce8deb4f3639ce4b41415a0ffcfe81361c17",
-    "ostree-version": "30.20191020.dev.0"
+    "ostree-commit": "072f41b7b0ef8d752f0d8b7c78b1ab8fe41f2b7cb0ff320adf9855f11bc0a9bf",
+    "ostree-version": "30.20191020.okd.0"
 }

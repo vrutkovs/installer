@@ -20,7 +20,7 @@ import (
 
 var (
 	// defaultReleaseImageOriginal is the value served when defaultReleaseImagePadded is unmodified.
-	defaultReleaseImageOriginal = "quay.io/vrutkovs/okd-release:4.3-oct201743"
+	defaultReleaseImageOriginal = "quay.io/vrutkovs/okd-release:4.3-oct201933"
 	// defaultReleaseImagePadded may be replaced in the binary with a pull spec that overrides defaultReleaseImage as
 	// a null-terminated string within the allowed character length. This allows a distributor to override the payload
 	// location without having to rebuild the source.
