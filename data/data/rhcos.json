@@ -124,8 +124,8 @@
         }
     },
     "oscontainer": {
-        "digest": "sha256:a8eab7b90a9770ad908cecfd040ee6be0325f34dbb143ed2b558d758e59447bc",
-        "image": "quay.io/vrutkovs/oscontainer"
+        "digest": "sha256:0a7326b34b6cf21c19bd2636ceb9ba06796c386284722368d12dc2e3f803f02e",
+        "image": "registry.svc.openshift.org/vrutkovs/machine-os-content"
     },
     "ostree-commit": "371c321908cea6d1ad225f7ed3c094ed0bab601783e25192ee86a813414a6a52",
     "ostree-version": "30.20191021.okd.2"
