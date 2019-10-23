@@ -137,6 +137,8 @@ func (w *Worker) Generate(dependencies asset.Parents) error {
 	for _, pool := range ic.Compute {
 		if pool.Hyperthreading == types.HyperthreadingDisabled {
 			machineConfigs = append(machineConfigs, machineconfig.ForHyperthreadingDisabled("worker"))
+		} else {
+			machineConfigs = append(machineConfigs, machineconfig.ForceHyperthreadingEnabled("worker"))
 		}
 		if ic.SSHKey != "" {
 			machineConfigs = append(machineConfigs, machineconfig.ForAuthorizedKeys(ic.SSHKey, "worker"))
