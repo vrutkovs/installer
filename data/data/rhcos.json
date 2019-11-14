@@ -53,19 +53,19 @@
         "image": "rhcos-43.80.20191002.1-azure.x86_64.vhd",
         "url": "https://rhcos.blob.core.windows.net/imagebucket/rhcos-43.80.20191002.1-azure.x86_64.vhd"
     },
-    "baseURI": "https://releases-art-rhcos.svc.ci.openshift.org/art/storage/releases/rhcos-4.3/43.80.20191002.1/x86_64/",
-    "buildid": "43.80.20191002.1",
+    "baseURI": "https://builds.coreos.fedoraproject.org/prod/streams/testing/builds/30.20191014.0/x86_64/",
+    "buildid": "30.20191014.0",
     "gcp": {
         "image": "rhcos-43-80-20191002-1",
         "url": "https://storage.googleapis.com/rhcos/rhcos/43.80.20191002.1.tar.gz"
     },
     "images": {
         "aws": {
-            "path": "rhcos-43.80.20191002.1-aws.x86_64.vmdk",
-            "sha256": "e10f776736e106e1f78c1cfb1137cae6b8f719e7d1c5b86f54c97f1a15903cc7",
-            "size": 711287734,
-            "uncompressed-sha256": "be289bb9ed539361ad5ab7d49f1798d33329246aed44af85c3f1d493a8cb5170",
-            "uncompressed-size": 726297600
+            "path": "fedora-coreos-30.20191014.0-aws.x86_64.vmdk.xz",
+            "sha256": "8b164a7317121ba198351186e85b42c8fd8a0309fded365f12e5f159a645db89",
+            "size": 636873400,
+            "uncompressed-sha256": "40030e13545ffe584b9719a96c31d7e6b9cd68f9208e01700a91f2e790bb0776",
+            "uncompressed-size": 674870784
         },
         "azure": {
             "path": "rhcos-43.80.20191002.1-azure.x86_64.vhd",
