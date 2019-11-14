@@ -53,8 +53,8 @@
         "image": "rhcos-43.80.20191002.1-azure.x86_64.vhd",
         "url": "https://rhcos.blob.core.windows.net/imagebucket/rhcos-43.80.20191002.1-azure.x86_64.vhd"
     },
-    "baseURI": "https://releases-art-rhcos.svc.ci.openshift.org/art/storage/releases/rhcos-4.3/43.80.20191002.1/x86_64/",
-    "buildid": "43.80.20191002.1",
+    "baseURI": "https://builds.coreos.fedoraproject.org/prod/streams/testing/builds/30.20191014.0/x86_64/",
+    "buildid": "30.20191014.0",
     "gcp": {
         "image": "rhcos-43-80-20191002-1",
         "url": "https://storage.googleapis.com/rhcos/rhcos/43.80.20191002.1.tar.gz"
@@ -80,23 +80,23 @@
             "size": 699106634
         },
         "initramfs": {
-            "path": "rhcos-43.80.20191002.1-installer-initramfs.x86_64.img",
-            "sha256": "616bc8a305364369e8c241d4049b44d734e6853ad72ba33450d8e490e6cafb66"
+            "path": "fedora-coreos-30.20191014.0-installer-initramfs.x86_64.img",
+            "sha256": "4e07e0d4668a2e28b3e13e8e5af17f84e13506b1899642ddf5b4058239df9bfe"
         },
         "iso": {
-            "path": "rhcos-43.80.20191002.1-installer.x86_64.iso",
-            "sha256": "401b68928f8a54a60065b0fa64062fc0f2e1d3a97038e3d38f9b1adc26bc1c73"
+            "path": "fedora-coreos-30.20191014.0-installer.x86_64.iso",
+            "sha256": "179386d6945e22fcb06c427f73a6a27cc91c2370be07e264200454de6be98ca2"
         },
         "kernel": {
-            "path": "rhcos-43.80.20191002.1-installer-kernel-x86_64",
-            "sha256": "a31a100ad4ad033240ad8547f55a803542f7a6212adb7df1d0fb4618383b9729"
+            "path": "fedora-coreos-30.20191014.0-installer-kernel-x86_64",
+            "sha256": "f68a6b7f87cb96f4579edd86fe725bf6b495bc83b55439b5cb4f58c5b3a7227f"
         },
         "metal": {
-            "path": "rhcos-43.80.20191002.1-metal.x86_64.raw.gz",
-            "sha256": "57786ba28288ac2c913b8fc5517469434959a689a6fbdb172f1ae370adf8d5df",
-            "size": 700266884,
-            "uncompressed-sha256": "84dbd7969a2ff928f43e74295750557230ec43789ca63715e749cf03e9f38de7",
-            "uncompressed-size": 2756706304
+            "path": "fedora-coreos-30.20191014.0-metal.x86_64.raw.xz",
+            "sha256": "503ac4f314a55d0c83c1aeb36e400159d69f734b0fe6278582eb5a12d71e6f7a",
+            "size": 436409292,
+            "uncompressed-sha256": "6a47c507b27015097f7dfb76ff0621e8a68d6c00c2cc3efd7518d866c11495b7",
+            "uncompressed-size": 2522873856
         },
         "openstack": {
             "path": "rhcos-43.80.20191002.1-openstack.x86_64.qcow2",
