@@ -6,11 +6,12 @@ import (
 
 	"github.com/ghodss/yaml"
 	"github.com/pkg/errors"
-	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 
 	configv1 "github.com/openshift/api/config/v1"
 	"github.com/openshift/installer/pkg/asset"
 	"github.com/openshift/installer/pkg/asset/installconfig"
+	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+
 	gcpmanifests "github.com/openshift/installer/pkg/asset/manifests/gcp"
 	"github.com/openshift/installer/pkg/types/aws"
 	"github.com/openshift/installer/pkg/types/azure"
@@ -143,13 +144,6 @@ func (i *Infrastructure) Generate(dependencies asset.Parents) error {
 		}
 	case vsphere.Name:
 		config.Status.PlatformStatus.Type = configv1.VSpherePlatformType
-		if installConfig.Config.VSphere.APIVIP != "" {
-			config.Status.PlatformStatus.VSphere = &configv1.VSpherePlatformStatus{
-				APIServerInternalIP: installConfig.Config.VSphere.APIVIP,
-				NodeDNSIP:           installConfig.Config.VSphere.DNSVIP,
-				IngressIP:           installConfig.Config.VSphere.IngressVIP,
-			}
-		}
 	case ovirt.Name:
 		config.Status.PlatformStatus.Type = configv1.OvirtPlatformType
 		config.Status.PlatformStatus.Ovirt = &configv1.OvirtPlatformStatus{
