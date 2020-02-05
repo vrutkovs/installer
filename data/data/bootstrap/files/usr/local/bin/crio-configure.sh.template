@@ -15,3 +15,10 @@ MACHINE_CONFIG_INFRA_IMAGE=$(image_for pod)
 sed --in-place --expression "s,pause_image *=.*,pause_image = \"${MACHINE_CONFIG_INFRA_IMAGE}\"," /etc/crio/crio.conf
 sed --in-place --expression 's,pause_command *=.*,pause_command = "/usr/bin/pod",' /etc/crio/crio.conf
 sed --in-place --expression 's,"/usr/share/containers/oci/hooks.d","/etc/containers/oci/hooks.d",' /etc/crio/crio.conf
+
+sed --in-place --expression 's,default_runtime *=.*,default_runtime = "crun",' /etc/crio/crio.conf
+
+echo '[crio.runtime.runtimes.crun]' >> /etc/crio/crio.conf
+echo 'runtime_path = ""' >> /etc/crio/crio.conf
+echo 'runtime_type = "oci"' >> /etc/crio/crio.conf
+echo 'runtime_root = "/run/crun"' >> /etc/crio/crio.conf
