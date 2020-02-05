@@ -57,7 +57,8 @@ if [ ! -f .pivot-done ]; then
   touch /run/pivot/reboot-needed
   echo "${MACHINE_CONFIG_OSCONTENT}" > /etc/pivot/image-pullspec
 
-  echo "ADD systemd.unified_cgroup_hierarchy=0" > /etc/pivot/kernel-args
+  echo "ADD systemd.unified_cgroup_hierarchy=1" > /etc/pivot/kernel-args
+	echo "DELETE systemd.unified_cgroup_hierarchy=0" >> /etc/pivot/kernel-args
   echo "DELETE mitigations=auto,nosmt" >> /etc/pivot/kernel-args
 
   mkdir --parents bin/
