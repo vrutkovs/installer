@@ -61,6 +61,9 @@ if [ ! -f .pivot-done ]; then
 	echo "DELETE systemd.unified_cgroup_hierarchy=0" >> /etc/pivot/kernel-args
   echo "DELETE mitigations=auto,nosmt" >> /etc/pivot/kernel-args
 
+  #Switch selinux to permissive
+  sed -i s/^SELINUX=.*$/SELINUX=permissive/ /etc/selinux/config
+
   mkdir --parents bin/
   bootkube_podman_pull "${MACHINE_CONFIG_OPERATOR_IMAGE}"
   bootkube_podman_run --entrypoint=cat "${MACHINE_CONFIG_OPERATOR_IMAGE}" \
