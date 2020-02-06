@@ -120,6 +120,7 @@ trap "podman rm --force etcd-signer" ERR
 
 bootkube_podman_pull "${KUBE_ETCD_SIGNER_SERVER_IMAGE}"
 bootkube_podman_run \
+  --log-level=debug \
 	--name etcd-signer \
 	--detach \
 	--volume /opt/openshift/tls:/opt/openshift/tls:ro,z \
