@@ -1,6 +1,12 @@
 #!/usr/bin/env bash
 set -euoE pipefail ## -E option will cause functions to inherit trap
 
+# Use runc for podman runs, because crio would remove any unrecognized containers
+# and may kill etcd-signer
+# This needs to happen before first podman run
+cp /usr/share/containers/libpod.conf /etc/containers/libpod.conf
+sed --in-place --expression "s,^runtime *=.*,runtime = \"runc\"," /etc/containers/libpod.conf
+
 . /usr/local/bin/release-image.sh
 
 mkdir --parents /etc/kubernetes/{manifests,bootstrap-configs,bootstrap-manifests}
