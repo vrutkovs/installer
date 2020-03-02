@@ -61,6 +61,7 @@ type bootstrapTemplateData struct {
 	BootImage             string
 	PlatformData          platformTemplateData
 	UseIPv6ForNodeIP      bool
+	IsOKD                 bool
 }
 
 // platformTemplateData is the data to use to replace values in bootstrap
@@ -289,6 +290,7 @@ func (a *Bootstrap) getTemplateData(installConfig *types.InstallConfig, releaseI
 		PlatformData:          platformData,
 		ClusterProfile:        clusterProfile,
 		UseIPv6ForNodeIP:      APIIntVIPonIPv6,
+		IsOKD:                 installConfig.IsOKD(),
 	}, nil
 }
 
