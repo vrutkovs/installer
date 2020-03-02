@@ -3,9 +3,10 @@ package rhcos
 
 import (
 	"context"
-	"github.com/openshift/installer/pkg/types/ovirt"
 	"os"
 	"time"
+
+	"github.com/openshift/installer/pkg/types/ovirt"
 
 	"github.com/pkg/errors"
 	"github.com/sirupsen/logrus"
@@ -67,6 +68,7 @@ func osImage(config *types.InstallConfig) (string, error) {
 
 	var osimage string
 	var err error
+	isOKD := config.IsOKD()
 	ctx, cancel := context.WithTimeout(context.TODO(), 30*time.Second)
 	defer cancel()
 	switch config.Platform.Name() {
@@ -75,21 +77,21 @@ func osImage(config *types.InstallConfig) (string, error) {
 			osimage = config.Platform.AWS.AMIID
 			break
 		}
-		osimage, err = rhcos.AMI(ctx, arch, config.Platform.AWS.Region)
+		osimage, err = rhcos.AMI(ctx, arch, config.Platform.AWS.Region, isOKD)
 	case gcp.Name:
-		osimage, err = rhcos.GCP(ctx, arch)
+		osimage, err = rhcos.GCP(ctx, arch, isOKD)
 	case libvirt.Name:
-		osimage, err = rhcos.QEMU(ctx, arch)
+		osimage, err = rhcos.QEMU(ctx, arch, isOKD)
 	case openstack.Name:
 		if oi := config.Platform.OpenStack.ClusterOSImage; oi != "" {
 			osimage = oi
 			break
 		}
-		osimage, err = rhcos.OpenStack(ctx, arch)
+		osimage, err = rhcos.OpenStack(ctx, arch, isOKD)
 	case ovirt.Name:
-		osimage, err = rhcos.OpenStack(ctx, arch)
+		osimage, err = rhcos.OpenStack(ctx, arch, isOKD)
 	case azure.Name:
-		osimage, err = rhcos.VHD(ctx, arch)
+		osimage, err = rhcos.VHD(ctx, arch, isOKD)
 	case baremetal.Name:
 		// Check for RHCOS image URL override
 		if oi := config.Platform.BareMetal.ClusterOSImage; oi != "" {
@@ -100,7 +102,7 @@ func osImage(config *types.InstallConfig) (string, error) {
 		// Note that baremetal IPI currently uses the OpenStack image
 		// because this contains the necessary ironic config drive
 		// ignition support, which isn't enabled in the UPI BM images
-		osimage, err = rhcos.OpenStack(ctx, arch)
+		osimage, err = rhcos.OpenStack(ctx, arch, isOKD)
 	case none.Name, vsphere.Name:
 
 	default:
