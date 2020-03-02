@@ -6,4 +6,7 @@ After=network-online.target
 [Service]
 Type=oneshot
 ExecStart=/usr/local/bin/release-image-download.sh
+{{if .IsOKD -}}
+ExecStart=/usr/local/bin/bootstrap-pivot.sh
+{{end -}}
 RemainAfterExit=true
