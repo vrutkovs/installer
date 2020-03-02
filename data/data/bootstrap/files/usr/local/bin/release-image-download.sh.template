@@ -17,3 +17,44 @@ do
     echo "Pull failed. Retrying $RELEASE_IMAGE..."
 done
 
+{{if .IsOKD -}}
+# Pivot bootstrap to FCOS + OKD machine-os-content
+if [ ! -f /opt/openshift/.pivot-done ]; then
+  . /usr/local/bin/release-image.sh
+
+  # Copy machine-config-daemon binary from payload
+  MACHINE_CONFIG_OPERATOR_IMAGE=$(image_for machine-config-operator)
+  mkdir --parents bin/
+  podman run --quiet --net=host --entrypoint=cat "${MACHINE_CONFIG_OPERATOR_IMAGE}" \
+    /usr/bin/machine-config-daemon > /usr/local/bin/machine-config-daemon
+  chmod +x /usr/local/bin/machine-config-daemon
+  restorecon /usr/local/bin/machine-config-daemon
+
+  set -x
+
+  # Pre-pull machine-os-content image
+  mkdir --parents /tmp/bootstrap
+  MACHINE_CONFIG_OSCONTENT=$(image_for machine-os-content)
+  podman pull "${MACHINE_CONFIG_OSCONTENT}"
+  mnt=$(podman image mount "${MACHINE_CONFIG_OSCONTENT}")
+  pushd ${mnt}/bootstrap
+    cp overlay/etc / -rvf
+    cp overlay/usr/local/bin/*  /usr/local/bin/ -rvf
+    cp manifests/* /opt/openshift/openshift/ -rvf
+  popd
+
+  # GCP: enable gcp-routes services
+  systemctl daemon-reload
+  systemctl enable openshift-gcp-routes.service || true
+
+  # Set image-pullspec for pivot
+  mkdir --parents /run/pivot /etc/pivot
+  touch /run/pivot/reboot-needed
+  echo "${MACHINE_CONFIG_OSCONTENT}" > /etc/pivot/image-pullspec
+
+  touch /opt/openshift/.pivot-done
+  /usr/local/bin/machine-config-daemon pivot
+
+  systemctl reboot
+fi
+{{end -}}
