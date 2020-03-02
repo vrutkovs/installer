@@ -66,6 +66,7 @@ func (o *Openshift) Dependencies() []asset.Asset {
 		&openshift.RoleCloudCredsSecretReader{},
 		&openshift.PrivateClusterOutbound{},
 		&openshift.BaremetalConfig{},
+		&openshift.CommunityOperators{},
 		new(rhcos.Image),
 	}
 }
@@ -188,6 +189,7 @@ func (o *Openshift) Generate(dependencies asset.Parents) error {
 	kubeadminPasswordSecret := &openshift.KubeadminPasswordSecret{}
 	roleCloudCredsSecretReader := &openshift.RoleCloudCredsSecretReader{}
 	baremetalConfig := &openshift.BaremetalConfig{}
+	communityOperatorsSetting := &openshift.CommunityOperators{}
 	rhcosImage := new(rhcos.Image)
 
 	dependencies.Get(
@@ -199,6 +201,9 @@ func (o *Openshift) Generate(dependencies asset.Parents) error {
 
 	assetData := map[string][]byte{
 		"99_kubeadmin-password-secret.yaml": applyTemplateData(kubeadminPasswordSecret.Files()[0].Data, templateData),
+	}
+	if installConfig.Config.IsOKD() {
+		assetData["99_community_operators.yaml"] = applyTemplateData(communityOperatorsSetting.Files()[0].Data, templateData)
 	}
 
 	switch platform {
