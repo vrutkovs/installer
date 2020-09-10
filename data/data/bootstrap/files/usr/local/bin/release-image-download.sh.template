@@ -40,6 +40,9 @@ if [ ! -f /opt/openshift/.pivot-done ]; then
   # GCP: enable gcp-routes services
   systemctl enable openshift-gcp-routes.service || true
 
+  # Disable docker socket
+  systemctl disable docker.socket
+
   touch /opt/openshift/.pivot-done
   /usr/local/bin/machine-config-daemon pivot
 
