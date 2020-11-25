@@ -22,6 +22,13 @@ TAGS="${TAGS:-}"
 OUTPUT="${OUTPUT:-bin/openshift-install}"
 export CGO_ENABLED=0
 
+if (echo "${TAGS}" | grep -q 'okd')
+then
+	# Replace rhcos images with FCOS
+	mv ./data/data/{fcos,rhcos}.json
+	mv ./data/data/{fcos,rhcos}-amd64.json
+fi
+
 case "${MODE}" in
 release)
 	LDFLAGS="${LDFLAGS} -s -w"
