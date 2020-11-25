@@ -1,0 +1,25 @@
+# This Dockerfile is used by CI to publish the OKD version of installer image.
+# It builds an image containing only the openshift-install.
+
+FROM registry.ci.openshift.org/ocp/builder:rhel-8-golang-1.15-openshift-4.7 AS builder
+RUN yum install -y libvirt-devel-4.5.0 && \
+    yum clean all && rm -rf /var/cache/yum/*
+WORKDIR /go/src/github.com/openshift/installer
+COPY . .
+RUN TAGS="libvirt okd" hack/build.sh
+
+FROM registry.ci.openshift.org/origin/4.7:base
+COPY --from=builder /go/src/github.com/openshift/installer/bin/openshift-install /bin/openshift-install
+
+RUN yum update -y && \
+    yum install --setopt=tsflags=nodocs -y \
+    libvirt-libs-4.5.0 openssl unzip jq openssh-clients && \
+    yum clean all && rm -rf /var/cache/yum/* && \
+    chmod g+w /etc/passwd
+
+RUN mkdir /output && chown 1000:1000 /output
+USER 1000:1000
+ENV PATH /bin
+ENV HOME /output
+WORKDIR /output
+ENTRYPOINT ["/bin/openshift-install"]

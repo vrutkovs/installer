@@ -1,0 +1,46 @@
+# This Dockerfile is used by CI to test using OKD Installer against an OpenStack cloud.
+# It builds an image containing the openshift-install command as well as the openstack cli.
+FROM registry.svc.ci.openshift.org/openshift/release:golang-1.14 AS builder
+WORKDIR /go/src/github.com/openshift/installer
+COPY . .
+RUN TAGS="okd" hack/build.sh
+
+FROM registry.svc.ci.openshift.org/origin/4.7:cli AS cli
+
+FROM registry.svc.ci.openshift.org/origin/4.7:base
+COPY --from=cli /usr/bin/oc /bin/oc
+COPY --from=builder /go/src/github.com/openshift/installer/bin/openshift-install /bin/openshift-install
+COPY --from=builder /go/src/github.com/openshift/installer/upi /var/lib/openshift-install/upi
+COPY --from=builder /go/src/github.com/openshift/installer/images/openstack/rdo-train.repo /etc/yum.repos.d/rdo-train.repo
+COPY --from=builder /go/src/github.com/openshift/installer/images/openstack/rdo-train.gpg /etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-SIG-Cloud
+COPY --from=builder /go/src/github.com/openshift/installer/hack/openstack/test-manifests.sh /go/src/github.com/openshift/installer/scripts/openstack/manifest-tests /var/lib/openshift-install/manifest-tests
+
+# Install Dependendencies for tests
+# https://github.com/openshift/origin/blob/6114cbc507bf18890f009f16ee424a62007bc390/images/tests/Dockerfile.rhel
+RUN yum install --setopt=tsflags=nodocs -y git gzip util-linux glibc-locale-source && \
+    yum clean all && rm -rf /var/cache/yum/* && \
+    localedef -c -f UTF-8 -i en_US en_US.UTF-8 && \
+    git config --system user.name test && \
+    git config --system user.email test@example.com && \
+    chmod g+w /etc/passwd
+
+RUN yum update -y && \
+    yum install --setopt=tsflags=nodocs -y \
+    python3-openstackclient ansible-2.9.14-1.el8ae python3-openstacksdk python3-netaddr unzip jq && \
+    yum clean all && rm -rf /var/cache/yum/*
+
+RUN python -m pip install yq
+
+# The Continuous Integration machinery relies on Route53 for DNS while testing the cluster.
+RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && \
+    unzip awscliv2.zip && \
+    ./aws/install -b /bin && \
+    rm -rf ./aws awscliv2.zip
+
+RUN mkdir /output && chown 1000:1000 /output
+USER 1000:1000
+ENV PATH /bin:/usr/local/bin
+ENV HOME /output
+ENV LC_ALL en_US.UTF-8
+WORKDIR /output
+ENTRYPOINT ["/bin/openshift-install"]
