@@ -120,7 +120,7 @@ queue resources/services.json oc --kubeconfig=/opt/openshift/auth/kubeconfig --r
 FILTER=gzip queue resources/openapi.json.gz oc --kubeconfig=/opt/openshift/auth/kubeconfig --request-timeout=5s get --raw /openapi/v2
 
 echo "Waiting for logs ..."
-wait
+while wait -n; do jobs; done
 
 echo "Gather remote logs"
 export MASTERS=()
