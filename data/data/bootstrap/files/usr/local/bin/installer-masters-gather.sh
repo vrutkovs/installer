@@ -42,4 +42,4 @@ do
 done
 
 echo "Waiting for logs ..."
-wait
+while wait -n; do jobs; done
