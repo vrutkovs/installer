@@ -2,6 +2,7 @@
 # on top of the Linux installer image.
 
 FROM registry.ci.openshift.org/ocp/builder:rhel-8-golang-1.15-openshift-4.8 AS builder
+ARG TAGS=""
 WORKDIR /go/src/github.com/openshift/installer
 COPY . .
 RUN go generate ./data && \
