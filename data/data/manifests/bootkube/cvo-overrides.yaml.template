@@ -5,7 +5,7 @@ metadata:
   name: version
 spec:
 {{- if .IsOKD }}
-  upstream: https://origin-release.svc.ci.openshift.org/graph
+  upstream: https://amd64.origin.releases.ci.openshift.org/graph
   channel: stable-4
 {{- else }}
   channel: stable-4.7
