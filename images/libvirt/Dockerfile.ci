@@ -9,7 +9,7 @@ WORKDIR /go/src/github.com/openshift/installer
 COPY . .
 RUN hack/build.sh
 
-FROM centos:7
+FROM registry.ci.openshift.org/origin/4.8:base
 COPY --from=builder /go/src/github.com/openshift/installer/bin/openshift-install /bin/openshift-install
 COPY --from=builder /go/src/github.com/openshift/installer/images/libvirt/mock-nss.sh /bin/mock-nss.sh
 COPY --from=builder /go/src/github.com/openshift/installer/images/libvirt/google-cloud-sdk.repo /etc/yum.repos.d/google-cloud-sdk.repo
