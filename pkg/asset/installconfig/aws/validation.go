@@ -30,7 +30,7 @@ type resourceRequirements struct {
 
 var controlPlaneReq = resourceRequirements{
 	minimumVCpus:  4,
-	minimumMemory: 16384,
+	minimumMemory: 8192,
 }
 
 var computeReq = resourceRequirements{
