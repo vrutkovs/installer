@@ -11,6 +11,20 @@ bootkube_podman_run() {
   podman run --quiet --net=host "${@}"
 }
 
+if [ ! -f stop-cvo.done ]; then
+  record_service_stage_start "stop-cvo"
+  echo "Stop CVO static pod by moving the manifest"
+  mv /etc/kubernetes/manifests/bootstrap-pod.yaml /etc/kubernetes || echo "already moved bootstrap-pod.yaml"
+
+  until ! crictl ps | grep cluster-version-operator; do
+    echo "Waiting for cluster-version-operator to go down"
+    sleep 10
+  done
+
+  touch stop-cvo.done
+  record_service_stage_success
+fi
+
 if [ ! -f stop-etcd.done ]; then
   record_service_stage_start "stop-etcd"
   echo "Stop etcd static pod by moving the manifest"
