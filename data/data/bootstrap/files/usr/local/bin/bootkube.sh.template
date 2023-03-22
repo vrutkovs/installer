@@ -124,6 +124,14 @@ then
 		--infra-config-file=/assets/manifests/cluster-infrastructure-02-config.yml \
 		--network-config-file=/assets/manifests/cluster-network-02-config.yml
 
+  echo "etcd-render complete, waiting for etcd-bootstrap-phase1.done file"
+  until [ -f etcd-bootstrap-phase1.done ]
+  do
+    echo "."
+    sleep 30
+  done
+  echo "etcd-bootstrap-phase1.done found, proceeding"
+
 	# Copy configuration required to start etcd
 	cp --recursive etcd-bootstrap/etc-kubernetes/* /etc/kubernetes/
 	# Copy manifests to apply to the bootstrap apiserver
